@@ -59,9 +59,32 @@ export default defineType({
     }),
     defineField({
       name: 'stock',
-      title: 'Stock Quantity',
-      type: 'number',
-      validation: Rule => Rule.min(0),
+      title: 'Stock Quantity (كمية المخزون)',
+      description: 'Enter quantities per color and size (ادخل الكمية لكل مقاس ولون)',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'color', type: 'string', title: 'Color (اللون)', description: 'e.g., Red, Blue, etc.' },
+            { name: 'size', type: 'string', title: 'Size (المقاس)', description: 'e.g., S, M, L, XL, etc.' },
+            { name: 'quantity', type: 'number', title: 'Quantity (الكمية)', validation: Rule => Rule.min(0) }
+          ],
+          preview: {
+            select: {
+              color: 'color',
+              size: 'size',
+              quantity: 'quantity'
+            },
+            prepare({ color, size, quantity }) {
+              return {
+                title: `${color || 'No Color'} - ${size || 'No Size'}`,
+                subtitle: `Qty: ${quantity || 0}`
+              };
+            }
+          }
+        }
+      ]
     }),
     defineField({
       name: 'colors',
@@ -101,12 +124,7 @@ export default defineType({
       type: 'string',
       description: 'The material/fabric of the product',
     }),
-    defineField({
-      name: 'measurements',
-      title: 'Measurements (القياسات)',
-      type: 'text',
-      description: 'Detailed measurements for this product',
-    }),
+
   ],
   preview: {
     select: {
