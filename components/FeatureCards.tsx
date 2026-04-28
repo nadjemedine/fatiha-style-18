@@ -24,27 +24,33 @@ const FeatureCards = () => {
     return IconComponent ? <IconComponent className="w-10 h-10 text-accent" strokeWidth={1.5} /> : <LucideIcons.Package className="w-10 h-10 text-accent" strokeWidth={1.5} />;
   };
   return (
-    <section className="bg-background py-12 px-4 border-t border-accent/20">
-      <div className="max-w-4xl mx-auto grid grid-cols-2 gap-4 sm:gap-8">
-        {features.map((feature, index) => (
+    <section className="bg-background py-8 border-y border-accent/10 relative overflow-hidden">
+      <div className="flex animate-ticker animate-ticker-hover-pause w-fit">
+        {[...features, ...features].map((feature, index) => (
           <div 
-            key={index} 
-            className="bg-white p-6 sm:p-10 rounded-[3rem] border border-accent/20 shadow-sm flex flex-col items-center text-center gap-4 hover:shadow-md transition-shadow aspect-square justify-center"
+            key={`${feature._id}-${index}`} 
+            className="flex-shrink-0 w-[240px] px-4"
           >
-            <div className="bg-nav-bg p-4 rounded-full mb-2">
-              {renderIcon(feature.iconName)}
-            </div>
-            <div>
-              <h3 className="text-sm sm:text-lg font-bold text-gray-800 font-ornate italic tracking-wide mb-1">
-                {feature.title}
-              </h3>
-              <p className="text-[10px] sm:text-sm text-gray-500 font-medium leading-tight">
-                {feature.description}
-              </p>
+            <div className="bg-white p-6 rounded-[2.5rem] border border-accent/20 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow group">
+              <div className="bg-nav-bg p-3 rounded-full shrink-0 group-hover:scale-110 transition-transform">
+                {renderIcon(feature.iconName)}
+              </div>
+              <div className="text-left">
+                <h3 className="text-sm font-bold text-gray-800 font-ornate italic tracking-wide mb-0.5">
+                  {feature.title}
+                </h3>
+                <p className="text-[10px] text-gray-500 font-medium leading-tight">
+                  {feature.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}
       </div>
+      
+      {/* Decorative Gradient Overlays */}
+      <div className="absolute top-0 left-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
     </section>
   );
 };
