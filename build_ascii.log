@@ -1,0 +1,469 @@
+﻿
+> my-store@0.1.0 build
+> next build
+
+node.exe : ظأب 
+Warning: Next.js 
+inferred your 
+workspace root, but it 
+may not be correct.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Users\Administrator
+\AppData\ ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (ظأب Warning:    
+ Ne...not be correc    
+t.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+ We detected multiple 
+lockfiles and selected 
+the directory of C:\Use
+rs\Administrator\packag
+e-lock.json as the 
+root directory.
+ To silence this 
+warning, set 
+`turbopack.root` in 
+your Next.js config, 
+or consider removing 
+one of the lockfiles 
+if it's not needed.
+   See https://nextjs.o
+rg/docs/app/api-referen
+ce/config/next-config-j
+s/turbopack#root-direct
+ory for more 
+information.
+ Detected additional 
+lockfiles: 
+   * C:\Users\Administr
+ator\my-store\package-l
+ock.json
+
+ظû▓ Next.js 16.2.4 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build 
+failed with 9 errors:
+./my-store/app/studio/[
+[...tool]]/page.tsx:1:1
+Module not found: 
+Can't resolve 
+'next-sanity/studio'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ [33mNextStudio[0m 
+} [36mfrom[0m [32m'n
+ext-sanity/studio'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^[0m
+  [90m2 |[0m 
+[36mimport[0m config 
+[36mfrom[0m [32m'../
+../../sanity.config'[0
+m;
+  [90m3 |[0m
+  [90m4 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+[36mfunction[0m 
+[33mStudioPage[0m() {
+
+
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity.confi
+g.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineConfig } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m 
+[36mimport[0m { 
+structureTool } 
+[36mfrom[0m [32m'san
+ity/structure'[0m;
+  [90m3 |[0m 
+[36mimport[0m { 
+schemaTypes } 
+[36mfrom[0m [32m'./s
+anity/schemaTypes'[0m;
+  [90m4 |[0m
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity/schem
+aTypes/category.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineField, 
+defineType } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineType({
+  [90m4 |[0m   name: 
+[32m'category'[0m,
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity/s
+chemaTypes/category.ts
+    ./my-store/sanity/s
+chemaTypes/index.ts
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity/schem
+aTypes/feature.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineField, 
+defineType } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineType({
+  [90m4 |[0m   name: 
+[32m'feature'[0m,
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity/s
+chemaTypes/feature.ts
+    ./my-store/sanity/s
+chemaTypes/index.ts
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity/schem
+aTypes/hero.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineField, 
+defineType } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineType({
+  [90m4 |[0m   name: 
+[32m'hero'[0m,
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity/s
+chemaTypes/hero.ts
+    ./my-store/sanity/s
+chemaTypes/index.ts
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity/schem
+aTypes/product.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineField, 
+defineType } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineType({
+  [90m4 |[0m   name: 
+[32m'product'[0m,
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity/s
+chemaTypes/product.ts
+    ./my-store/sanity/s
+chemaTypes/index.ts
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity/schem
+aTypes/project.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineField, 
+defineType } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineType({
+  [90m4 |[0m   name: 
+[32m'project'[0m,
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity/s
+chemaTypes/project.ts
+    ./my-store/sanity/s
+chemaTypes/index.ts
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity/schem
+aTypes/settings.ts:1:1
+Module not found: 
+Can't resolve 'sanity'
+[31m[1m>[0m [90m1 
+|[0m [36mimport[0m 
+{ defineField, 
+defineType } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineType({
+  [90m4 |[0m   name: 
+[32m'settings'[0m,
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity/s
+chemaTypes/settings.ts
+    ./my-store/sanity/s
+chemaTypes/index.ts
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+./my-store/sanity.confi
+g.ts:2:1
+Module not found: 
+Can't resolve 
+'sanity/structure'
+  [90m1 |[0m 
+[36mimport[0m { 
+defineConfig } 
+[36mfrom[0m 
+[32m'sanity'[0m;
+[31m[1m>[0m [90m2 
+|[0m [36mimport[0m 
+{ structureTool } 
+[36mfrom[0m [32m'san
+ity/structure'[0m;
+  [90m  |[0m [31m[1
+m^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+^^^^[0m
+  [90m3 |[0m 
+[36mimport[0m { 
+schemaTypes } 
+[36mfrom[0m [32m'./s
+anity/schemaTypes'[0m;
+  [90m4 |[0m
+  [90m5 |[0m 
+[36mexport[0m 
+[36mdefault[0m 
+defineConfig({
+
+
+
+Import trace:
+  Server Component:
+    ./my-store/sanity.c
+onfig.ts
+    ./my-store/app/stud
+io/[[...tool]]/page.tsx
+
+https://nextjs.org/docs
+/messages/module-not-fo
+und
+
+
+    at <unknown> (./my-
+store/app/studio/[[...t
+ool]]/page.tsx:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity.config.ts:
+1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity/schemaType
+s/category.ts:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity/schemaType
+s/feature.ts:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity/schemaType
+s/hero.ts:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity/schemaType
+s/product.ts:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity/schemaType
+s/project.ts:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity/schemaType
+s/settings.ts:1:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)
+    at <unknown> (./my-
+store/sanity.config.ts:
+2:1)
+    at <unknown> (https
+://nextjs.org/docs/mess
+ages/module-not-found)

@@ -1,0 +1,138 @@
+﻿
+> my-store@0.1.0 build
+> next build
+
+node.exe : ظأب 
+Warning: Next.js 
+inferred your 
+workspace root, but it 
+may not be correct.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Users\Administrator
+\AppData\ ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (ظأب Warning:    
+ Ne...not be correc    
+t.:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+ We detected multiple 
+lockfiles and selected 
+the directory of C:\Use
+rs\Administrator\packag
+e-lock.json as the 
+root directory.
+ To silence this 
+warning, set 
+`turbopack.root` in 
+your Next.js config, 
+or consider removing 
+one of the lockfiles 
+if it's not needed.
+   See https://nextjs.o
+rg/docs/app/api-referen
+ce/config/next-config-j
+s/turbopack#root-direct
+ory for more 
+information.
+ Detected additional 
+lockfiles: 
+   * C:\Users\Administr
+ator\my-store\package-l
+ock.json
+
+ظû▓ Next.js 16.2.4 (Turbopack)
+
+  Creating an optimized production build ...
+ظ£ô Compiled successfully in 89s
+  Running TypeScript ...
+  Finished TypeScript in 11.3s ...
+  Collecting page data using 3 workers ...
+Error: Failed to 
+collect configuration 
+for /studio/[[...tool]]
+    at ignore-listed 
+frames {
+  [cause]: TypeError: b
+c.default.createContext
+ is not a function
+      at module 
+evaluation (C:\Users\Ad
+ministrator\my-store\.n
+ext\server\chunks\ssr\0
+jct_0n2jc6.._.js:1:3771
+22)
+      at 
+instantiateModule (C:\U
+sers\Administrator\my-s
+tore\.next\server\chunk
+s\ssr\[turbopack]_runti
+me.js:853:9)
+      at getOrInstantia
+teModuleFromParent (C:\
+Users\Administrator\my-
+store\.next\server\chun
+ks\ssr\[turbopack]_runt
+ime.js:877:12)
+      at 
+Context.esmImport [as 
+i] (C:\Users\Administra
+tor\my-store\.next\serv
+er\chunks\ssr\[turbopac
+k]_runtime.js:281:20)
+      at module 
+evaluation (C:\Users\Ad
+ministrator\my-store\.n
+ext\server\chunks\ssr\0
+jct_078m5ft._.js:83:687
+252)
+      at 
+instantiateModule (C:\U
+sers\Administrator\my-s
+tore\.next\server\chunk
+s\ssr\[turbopack]_runti
+me.js:853:9)
+      at getOrInstantia
+teModuleFromParent (C:\
+Users\Administrator\my-
+store\.next\server\chun
+ks\ssr\[turbopack]_runt
+ime.js:877:12)
+      at 
+Context.esmImport [as 
+i] (C:\Users\Administra
+tor\my-store\.next\serv
+er\chunks\ssr\[turbopac
+k]_runtime.js:281:20)
+      at module 
+evaluation (C:\Users\Ad
+ministrator\my-store\.n
+ext\server\chunks\ssr\[
+root-of-the-server]__0j
+i-wdd._.js:1:9452)
+      at 
+instantiateModule (C:\U
+sers\Administrator\my-s
+tore\.next\server\chunk
+s\ssr\[turbopack]_runti
+me.js:853:9)
+}
+
+> Build error occurred
+Error: Failed to 
+collect page data for 
+/studio/[[...tool]]
+    at ignore-listed 
+frames {
+  type: 'Error'
+}

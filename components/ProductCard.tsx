@@ -4,29 +4,37 @@ import React from 'react';
 import { Heart, ShoppingBag } from 'lucide-react';
 import { useCart } from './CartContext';
 import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/image';
 
 interface ProductCardProps {
-  id: number;
+  _id: string;
   name: string;
   price: number;
-  image: string;
+  image: any;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ id, name, price, image }) => {
-  const { addToCart } = useCart();
+const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, image }) => {
+  const { addToCart, toggleFavorite, isFavorite, setQuickAddProduct } = useCart();
+  const favorited = isFavorite(_id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart({ id, name, price, image, quantity: 1 });
+    setQuickAddProduct({ _id, name, price, image });
+  };
+
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(_id);
   };
 
   return (
-    <Link href={`/product/${id}`} className="group block">
-      <div className="bg-white rounded-[2.5rem] border border-[#ccd9cc] overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 relative">
+    <Link href={`/product/${_id}`} className="group block">
+      <div className="bg-white rounded-[2.5rem] border border-accent/20 overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 relative">
         <div className="aspect-[3/4] bg-gray-50 overflow-hidden relative">
           <img 
-            src={image} 
+            src={urlFor(image).url()} 
             alt={name} 
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
           />
@@ -34,12 +42,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, name, price, image }) => 
           
           {/* Quick Actions */}
           <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
-            <button className="p-2 bg-white rounded-full shadow-lg text-gray-400 hover:text-red-500 transition-colors">
-              <Heart className="w-5 h-5" strokeWidth={1.5} />
+            <button 
+              onClick={handleToggleFavorite}
+              className={`p-2 bg-white rounded-full shadow-lg transition-colors ${favorited ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`}
+            >
+              <Heart className="w-5 h-5" strokeWidth={1.5} fill={favorited ? 'currentColor' : 'none'} />
             </button>
             <button 
               onClick={handleAddToCart}
-              className="p-2 bg-[#2d5a27] rounded-full shadow-lg text-white hover:bg-[#1a3a17] transition-colors"
+              className="p-2 bg-accent rounded-full shadow-lg text-white hover:opacity-90 transition-opacity"
             >
               <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />
             </button>
@@ -50,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, name, price, image }) => 
           <h3 className="text-sm font-bold text-gray-800 font-ornate tracking-wide italic line-clamp-1">
             {name}
           </h3>
-          <p className="text-lg font-bold text-[#2d5a27]">{price} DA</p>
+          <p className="text-lg font-bold text-accent">{price} DA</p>
         </div>
       </div>
     </Link>

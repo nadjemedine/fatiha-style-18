@@ -25,9 +25,9 @@ const TopBar = () => {
   }, [announcements.length]);
 
   return (
-    <div className="w-full bg-[#dce8dc] py-2 text-center border-b border-[#ccd9cc] overflow-hidden">
+    <div className="w-full bg-nav-bg py-2 text-center border-b border-accent/20 overflow-hidden">
       <div className={`transition-all duration-500 transform ${isFading ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-        <p className="text-xs sm:text-sm font-medium text-[#2d5a27] tracking-[0.2em] font-ornate italic uppercase">
+        <p className="text-xs sm:text-sm font-medium text-black tracking-[0.2em] font-ornate italic uppercase">
           ✧ {announcements[currentIndex]} ✧
         </p>
       </div>

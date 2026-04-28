@@ -20,8 +20,33 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Fatiha Style 18",
-  description: "Modern E-Commerce Store",
+  title: {
+    default: "Boutique Fatiha Style 18",
+    template: "%s | Boutique Fatiha Style 18",
+  },
+  description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives de vêtements traditionnels et modernes.",
+  openGraph: {
+    title: "Boutique Fatiha Style 18",
+    description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives.",
+    url: "https://your-domain.com",
+    siteName: "Boutique Fatiha Style 18",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Logo Boutique Fatiha Style 18",
+      },
+    ],
+    locale: "fr_DZ",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Boutique Fatiha Style 18",
+    description: "Boutique de haute couture et mode élégante à Alger.",
+    images: ["/logo.png"],
+  },
 };
 
 import { CartProvider } from "@/components/CartContext";
@@ -29,6 +54,7 @@ import CartDrawer from "@/components/CartDrawer";
 import MenuDrawer from "@/components/MenuDrawer";
 import Footer from "@/components/Footer";
 import FeatureCards from "@/components/FeatureCards";
+import QuickAddDrawer from "@/components/QuickAddDrawer";
 
 export default function RootLayout({
   children,
@@ -49,6 +75,7 @@ export default function RootLayout({
           <Footer />
           <CartDrawer />
           <MenuDrawer />
+          <QuickAddDrawer />
         </CartProvider>
       </body>
     </html>
