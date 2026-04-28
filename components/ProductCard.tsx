@@ -10,10 +10,11 @@ interface ProductCardProps {
   _id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   image: any;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, image }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPrice, image }) => {
   const { addToCart, toggleFavorite, isFavorite, setQuickAddProduct } = useCart();
   const favorited = isFavorite(_id);
 
@@ -61,7 +62,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, image }) =>
           <h3 className="text-sm font-bold text-gray-800 font-ornate tracking-wide italic line-clamp-1">
             {name}
           </h3>
-          <p className="text-lg font-bold text-accent">{price} DA</p>
+          <div className="flex items-center gap-2">
+            <p className="text-lg font-bold text-accent">{price} DA</p>
+            {originalPrice && (
+              <p className="text-sm text-gray-400 line-through font-medium">{originalPrice} DA</p>
+            )}
+          </div>
         </div>
       </div>
     </Link>

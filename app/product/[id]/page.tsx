@@ -130,7 +130,12 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
               <h1 className="text-4xl font-bold text-gray-900 font-ornate italic mb-2 tracking-tight">
                 {product.name}
               </h1>
-              <p className="text-3xl font-bold text-[#c9beda]">{product.price} DA</p>
+              <div className="flex items-end gap-3">
+                <p className="text-3xl font-bold text-[#c9beda]">{product.price} DA</p>
+                {product.originalPrice && (
+                  <p className="text-xl text-gray-400 line-through font-medium mb-[2px]">{product.originalPrice} DA</p>
+                )}
+              </div>
             </div>
 
             <p className="text-gray-600 leading-relaxed font-medium">
