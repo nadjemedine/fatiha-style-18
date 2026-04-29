@@ -30,17 +30,42 @@ export default function CheckoutPage() {
     }
   }, [formData.wilaya]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName || !formData.phone || !formData.wilaya) {
       alert("Veuillez remplir tous les champs obligatoires");
       return;
     }
-    // Simulation order placement
-    console.log("Order placed:", { ...formData, items: cart, total });
-    setIsSubmitted(true);
-    clearCart();
-    window.scrollTo(0, 0);
+    
+    try {
+      // Send order notification email
+      const response = await fetch('/api/orders/notify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formData,
+          cart,
+          total,
+        }),
+      });
+
+      if (!response.ok) {
+        console.error('Failed to send order notification');
+      }
+
+      // Mark order as submitted
+      setIsSubmitted(true);
+      clearCart();
+      window.scrollTo(0, 0);
+    } catch (error) {
+      console.error('Error submitting order:', error);
+      // Still mark as submitted even if email fails
+      setIsSubmitted(true);
+      clearCart();
+      window.scrollTo(0, 0);
+    }
   };
 
   if (isSubmitted) {
