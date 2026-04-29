@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '@/components/CartContext';
 import { ArrowLeft, ShoppingBag, CheckCircle2, User, Phone, MapPin, Truck, Trash2, Plus, Minus } from 'lucide-react';
 import Link from 'next/link';
-import { wilayas } from '@/lib/algeria-data';
+import { wilayas, yalidinePrices } from '@/lib/algeria-data';
 
 export default function CheckoutPage() {
   const { cart, cartCount, clearCart, updateQuantity, removeFromCart } = useCart();
@@ -19,6 +19,20 @@ export default function CheckoutPage() {
   const [availableCommunes, setAvailableCommunes] = useState<string[]>([]);
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  // Calculate delivery price based on wilaya and delivery type
+  const getDeliveryPrice = () => {
+    const selectedWilaya = wilayas.find(w => w.name === formData.wilaya);
+    if (!selectedWilaya) return 0;
+    
+    const prices = yalidinePrices[selectedWilaya.id];
+    if (!prices) return 0;
+    
+    return formData.deliveryType === 'home' ? prices.home : prices.office;
+  };
+
+  const deliveryPrice = getDeliveryPrice();
+  const finalTotal = total + deliveryPrice;
 
   useEffect(() => {
     const selectedWilaya = wilayas.find(w => w.name === formData.wilaya);
@@ -48,6 +62,8 @@ export default function CheckoutPage() {
           formData,
           cart,
           total,
+          deliveryPrice,
+          finalTotal,
         }),
       });
 
@@ -253,7 +269,10 @@ export default function CheckoutPage() {
                           formData.deliveryType === 'home' ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda]' : 'border-gray-50 text-gray-400 bg-gray-50'
                         }`}
                       >
-                        À domicile
+                        <div className="text-sm">À domicile</div>
+                        {formData.wilaya && (
+                          <div className="text-xs mt-1 font-bold">{deliveryPrice} DA</div>
+                        )}
                       </button>
                       <button 
                         type="button"
@@ -262,7 +281,10 @@ export default function CheckoutPage() {
                           formData.deliveryType === 'office' ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda]' : 'border-gray-50 text-gray-400 bg-gray-50'
                         }`}
                       >
-                        Point Relais / Bureau
+                        <div className="text-sm">Point Relais / Bureau</div>
+                        {formData.wilaya && (
+                          <div className="text-xs mt-1 font-bold">{deliveryPrice} DA</div>
+                        )}
                       </button>
                     </div>
                   </div>
@@ -281,13 +303,13 @@ export default function CheckoutPage() {
                         <span>{total} DA</span>
                       </div>
                       <div className="flex justify-between text-gray-500 font-medium">
-                        <span>Livraison</span>
-                        <span className="text-accent">Gratuite</span>
+                        <span>Livraison (Yalidine)</span>
+                        <span className="text-accent">{deliveryPrice > 0 ? `${deliveryPrice} DA` : 'Sélectionner wilaya'}</span>
                       </div>
                       <div className="h-px bg-gray-100 my-4" />
                       <div className="flex justify-between items-center">
                         <span className="text-xl font-bold text-gray-900">Total à payer</span>
-                        <span className="text-3xl font-black text-[#c9beda]">{total} DA</span>
+                        <span className="text-3xl font-black text-[#c9beda]">{finalTotal} DA</span>
                       </div>
                     </div>
 

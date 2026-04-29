@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { formData, cart, total } = body;
+    const { formData, cart, total, deliveryPrice, finalTotal } = body;
 
     // Create order details HTML
     const orderItems = cart.map((item: any) => `
@@ -92,12 +92,12 @@ export async function POST(request: NextRequest) {
                   <td style="padding: 8px 0; color: #1f2937; font-weight: 700; text-align: right; font-size: 14px;">${total} DA</td>
                 </tr>
                 <tr>
-                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Shipping:</td>
-                  <td style="padding: 8px 0; color: #10b981; font-weight: 700; text-align: right; font-size: 14px;">FREE</td>
+                  <td style="padding: 8px 0; color: #6b7280; font-size: 14px;">Delivery (Yalidine):</td>
+                  <td style="padding: 8px 0; color: #1f2937; font-weight: 700; text-align: right; font-size: 14px;">${deliveryPrice} DA</td>
                 </tr>
                 <tr style="border-top: 2px solid #e5e7eb;">
                   <td style="padding: 12px 0 0 0; color: #1f2937; font-size: 16px; font-weight: 800;">Total:</td>
-                  <td style="padding: 12px 0 0 0; color: #c9beda; font-weight: 900; text-align: right; font-size: 20px;">${total} DA</td>
+                  <td style="padding: 12px 0 0 0; color: #c9beda; font-weight: 900; text-align: right; font-size: 20px;">${finalTotal} DA</td>
                 </tr>
               </table>
             </td>
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: 'My Store <onboarding@resend.com>',
       to: ['fatihabenamor1984@gmail.com'],
-      subject: `🎉 New Order - ${formData.fullName} - ${total} DA`,
+      subject: `🎉 New Order - ${formData.fullName} - ${finalTotal} DA`,
       html: emailHtml,
     });
 
