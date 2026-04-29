@@ -20,6 +20,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fatihastyle18.store"),
   title: {
     default: "Boutique fatihastyle 18",
     template: "%s | Boutique fatihastyle 18",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "Boutique fatihastyle 18",
     images: [
       {
-        url: "/og-image.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Logo Boutique fatihastyle 18",
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Boutique fatihastyle 18",
     description: "Boutique de haute couture et mode élégante à Alger.",
-    images: ["/og-image.png"],
+    images: ["/logo.png"],
   },
 };
 
