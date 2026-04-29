@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Boutique fatihastyle 18",
     images: [
       {
-        url: "/logo.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Logo Boutique fatihastyle 18",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Boutique fatihastyle 18",
     description: "Boutique de haute couture et mode élégante à Alger.",
-    images: ["/logo.png"],
+    images: ["/og-image.png"],
   },
 };
 
