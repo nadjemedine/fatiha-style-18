@@ -21,17 +21,19 @@ export default function CheckoutPage() {
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   // Calculate delivery price based on wilaya and delivery type
-  const getDeliveryPrice = () => {
+  const getDeliveryPrice = (type: 'home' | 'office') => {
     const selectedWilaya = wilayas.find(w => w.name === formData.wilaya);
     if (!selectedWilaya) return 0;
     
     const prices = yalidinePrices[selectedWilaya.id];
     if (!prices) return 0;
     
-    return formData.deliveryType === 'home' ? prices.home : prices.office;
+    return type === 'home' ? prices.home : prices.office;
   };
 
-  const deliveryPrice = getDeliveryPrice();
+  const homePrice = getDeliveryPrice('home');
+  const officePrice = getDeliveryPrice('office');
+  const deliveryPrice = formData.deliveryType === 'home' ? homePrice : officePrice;
   const finalTotal = total + deliveryPrice;
 
   useEffect(() => {
@@ -270,8 +272,8 @@ export default function CheckoutPage() {
                         }`}
                       >
                         <div className="text-sm">À domicile</div>
-                        {formData.wilaya && (
-                          <div className="text-xs mt-1 font-bold">{deliveryPrice} DA</div>
+                        {formData.wilaya && homePrice > 0 && (
+                          <div className="text-xs mt-1 font-bold">{homePrice} DA</div>
                         )}
                       </button>
                       <button 
@@ -282,8 +284,8 @@ export default function CheckoutPage() {
                         }`}
                       >
                         <div className="text-sm">Point Relais / Bureau</div>
-                        {formData.wilaya && (
-                          <div className="text-xs mt-1 font-bold">{deliveryPrice} DA</div>
+                        {formData.wilaya && officePrice > 0 && (
+                          <div className="text-xs mt-1 font-bold">{officePrice} DA</div>
                         )}
                       </button>
                     </div>
