@@ -21,21 +21,21 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Boutique Fatiha Style 18",
-    template: "%s | Boutique Fatiha Style 18",
+    default: "Boutique fatihastyle 18",
+    template: "%s | Boutique fatihastyle 18",
   },
-  description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives de vêtements traditionnels et modernes.",
+  description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives de vêtements traditionnels et modernes sur Boutique fatihastyle 18.",
   openGraph: {
-    title: "Boutique Fatiha Style 18",
+    title: "Boutique fatihastyle 18",
     description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives.",
-    url: "https://your-domain.com",
-    siteName: "Boutique Fatiha Style 18",
+    url: "https://fatihastyle18.store",
+    siteName: "Boutique fatihastyle 18",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Logo Boutique Fatiha Style 18",
+        alt: "Logo Boutique fatihastyle 18",
       },
     ],
     locale: "fr_DZ",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Boutique Fatiha Style 18",
+    title: "Boutique fatihastyle 18",
     description: "Boutique de haute couture et mode élégante à Alger.",
     images: ["/logo.png"],
   },
