@@ -60,53 +60,29 @@ export default defineType({
     defineField({
       name: 'stock',
       title: 'Stock Quantity (كمية المخزون)',
-      description: 'Enter quantities per color and size (ادخل الكمية لكل مقاس ولون)',
+      description: 'Enter quantities per size (ادخل الكمية لكل مقاس)',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
-            { name: 'color', type: 'string', title: 'Color (اللون)', description: 'e.g., Red, Blue, etc.' },
             { name: 'size', type: 'string', title: 'Size (المقاس)', description: 'e.g., S, M, L, XL, etc.' },
             { name: 'quantity', type: 'number', title: 'Quantity (الكمية)', validation: Rule => Rule.min(0) }
           ],
           preview: {
             select: {
-              color: 'color',
               size: 'size',
               quantity: 'quantity'
             },
-            prepare({ color, size, quantity }) {
+            prepare({ size, quantity }) {
               return {
-                title: `${color || 'No Color'} - ${size || 'No Size'}`,
+                title: `${size || 'No Size'}`,
                 subtitle: `Qty: ${quantity || 0}`
               };
             }
           }
         }
       ]
-    }),
-    defineField({
-      name: 'colors',
-      title: 'Colors',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          name: 'colorVariant',
-          fields: [
-            { name: 'name', type: 'string', title: 'Color Name' },
-            { name: 'image', type: 'image', title: 'Associated Image', options: { hotspot: true } },
-          ],
-          preview: {
-            select: {
-              title: 'name',
-              media: 'image'
-            }
-          }
-        }
-      ],
-      description: 'Available colors and their associated images',
     }),
     defineField({
       name: 'sizes',
