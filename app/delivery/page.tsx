@@ -22,7 +22,7 @@ export default function DeliveryPage() {
       </div>
 
       <div className="max-w-4xl mx-auto p-6 space-y-8">
-        <section className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10">
+        <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-orange-50 rounded-full text-orange-600">
               <Truck className="w-6 h-6" />
@@ -35,7 +35,7 @@ export default function DeliveryPage() {
         </section>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10 space-y-4">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 space-y-4">
             <div className="flex items-center gap-3 text-accent transition-colors">
               <Clock className="w-6 h-6" />
               <h3 className="font-bold font-ornate italic text-xl">Délais</h3>
@@ -47,7 +47,7 @@ export default function DeliveryPage() {
             </ul>
           </div>
 
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10 space-y-4">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 space-y-4">
             <div className="flex items-center gap-3 text-accent transition-colors">
               <ShieldCheck className="w-6 h-6" />
               <h3 className="font-bold font-ornate italic text-xl">Garantie</h3>
@@ -58,7 +58,7 @@ export default function DeliveryPage() {
           </div>
         </div>
 
-        <section className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10">
+        <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-accent/10 rounded-full text-accent">
               <MapPin className="w-6 h-6" />
@@ -70,7 +70,7 @@ export default function DeliveryPage() {
           </p>
         </section>
 
-        <div className="bg-accent p-8 rounded-[2rem] text-white text-center shadow-lg">
+        <div className="bg-accent p-8 rounded-xl text-white text-center shadow-lg">
           <h3 className="text-xl font-bold font-ornate italic mb-2">Paiement à la livraison</h3>
           <p className="opacity-90">Réglez vos achats en toute confiance dès réception de votre colis.</p>
         </div>

@@ -32,7 +32,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
 
   return (
     <Link href={`/product/${_id}`} className="group block">
-      <div className="bg-white rounded-[2.5rem] border border-accent/20 overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 relative">
+      <div className="bg-white rounded-xl border border-accent/20 overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 relative">
         <div className="aspect-[3/4] bg-gray-50 overflow-hidden relative">
           <img 
             src={urlFor(image).url()} 

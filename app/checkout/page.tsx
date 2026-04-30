@@ -98,7 +98,7 @@ export default function CheckoutPage() {
         </p>
         <Link 
           href="/" 
-          className="w-full max-w-sm py-5 bg-[#c9beda] text-white rounded-[2.5rem] font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
+          className="w-full max-w-sm py-5 bg-[#c9beda] text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
         >
           Retour à l'accueil
         </Link>
@@ -118,7 +118,7 @@ export default function CheckoutPage() {
 
       <div className="max-w-4xl mx-auto p-4 lg:p-8">
         {cart.length === 0 ? (
-          <div className="py-20 flex flex-col items-center justify-center text-center bg-white rounded-[3rem] border border-[#d6c9e8] shadow-sm">
+          <div className="py-20 flex flex-col items-center justify-center text-center bg-white rounded-2xl border border-[#d6c9e8] shadow-sm">
             <div className="bg-[#FEE4ED] p-8 rounded-full mb-6">
               <ShoppingBag className="w-16 h-16 text-[#c9beda]" />
             </div>
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Top: Product List */}
-            <div className="bg-white p-6 lg:p-10 rounded-[3rem] border border-[#d6c9e8] shadow-sm">
+            <div className="bg-white p-6 lg:p-10 rounded-2xl border border-[#d6c9e8] shadow-sm">
               <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8">Articles à commander ({cartCount})</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {cart.map((item, index) => (
@@ -190,7 +190,7 @@ export default function CheckoutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left: Form */}
               <div className="space-y-6">
-                <div className="bg-white p-8 rounded-[3rem] border border-[#d6c9e8] shadow-sm space-y-6">
+                <div className="bg-white p-8 rounded-2xl border border-[#d6c9e8] shadow-sm space-y-6">
                   <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-6 border-b border-gray-50 pb-4">
                     Informations de livraison
                   </h2>
@@ -295,7 +295,7 @@ export default function CheckoutPage() {
 
               {/* Right: Order Summary */}
               <div className="space-y-6">
-                <div className="bg-white p-8 rounded-[3rem] border border-[#d6c9e8] shadow-sm flex flex-col h-full">
+                <div className="bg-white p-8 rounded-2xl border border-[#d6c9e8] shadow-sm flex flex-col h-full">
                   <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 border-b border-gray-50 pb-4">Résumé financier</h2>
                   
                   <div className="mt-auto space-y-6">
@@ -317,7 +317,7 @@ export default function CheckoutPage() {
 
                     <button 
                       type="submit"
-                      className="w-full py-6 bg-[#c9beda] text-white rounded-[2.5rem] font-bold text-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all transform active:scale-95"
+                      className="w-full py-6 bg-[#c9beda] text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all transform active:scale-95"
                     >
                       Confirmer la commande (COD)
                     </button>

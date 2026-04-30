@@ -22,7 +22,7 @@ export default function TermsPage() {
       </div>
 
       <div className="max-w-4xl mx-auto p-6 space-y-8">
-        <section className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10">
+        <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-blue-50 rounded-full text-blue-600">
               <FileText className="w-6 h-6" />
@@ -34,7 +34,7 @@ export default function TermsPage() {
           </p>
         </section>
 
-        <section className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10">
+        <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-green-50 rounded-full text-green-600">
               <ShieldCheck className="w-6 h-6" />
@@ -46,7 +46,7 @@ export default function TermsPage() {
           </p>
         </section>
 
-        <section className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10">
+        <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-purple-50 rounded-full text-purple-600">
               <Scale className="w-6 h-6" />
@@ -63,7 +63,7 @@ export default function TermsPage() {
           </ul>
         </section>
 
-        <div className="p-8 bg-gray-50 rounded-[2rem] text-center border border-gray-200">
+        <div className="p-8 bg-gray-50 rounded-xl text-center border border-gray-200">
           <p className="text-sm text-gray-500 italic">
             Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>

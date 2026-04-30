@@ -65,7 +65,7 @@ const QuickAddDrawer = () => {
         onClick={() => setQuickAddProduct(null)}
       />
       
-      <div className="relative w-full max-w-lg bg-white rounded-t-[3rem] sm:rounded-[3rem] p-8 shadow-2xl animate-slide-up transform transition-transform">
+      <div className="relative w-full max-w-lg bg-white rounded-t-2xl sm:rounded-2xl p-8 shadow-2xl animate-slide-up transform transition-transform">
         <button 
           onClick={() => setQuickAddProduct(null)}
           className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition-colors"

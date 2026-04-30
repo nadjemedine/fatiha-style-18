@@ -46,7 +46,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Contact Cards */}
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
             <div className="p-4 bg-[#fce6d2] rounded-full text-orange-600">
               <Phone className="w-8 h-8" />
             </div>
@@ -56,7 +56,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
             <div className="p-4 bg-[#fce6d2] rounded-full text-orange-600">
               <Mail className="w-8 h-8" />
             </div>
@@ -70,7 +70,7 @@ export default function ContactPage() {
             href={`https://wa.me/${settings?.contactPhone?.replace(/[^0-9]/g, '')}`} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4 hover:bg-green-50 transition-colors"
+            className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4 hover:bg-green-50 transition-colors"
           >
             <div className="p-4 bg-green-100 rounded-full text-green-600">
               <MessageCircle className="w-8 h-8" />
@@ -81,7 +81,7 @@ export default function ContactPage() {
             </div>
           </a>
 
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
             <div className="p-4 bg-[#FEE4ED] rounded-full text-pink-600">
               <Globe className="w-8 h-8" />
             </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <section className="bg-white p-8 rounded-[2rem] shadow-sm border border-accent/10">
+        <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-3 bg-[#fce6d2] rounded-full text-orange-600">
               <MapPin className="w-6 h-6" />

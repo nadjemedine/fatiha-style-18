@@ -31,7 +31,7 @@ const FeatureCards = () => {
             key={`${feature._id}-${index}`} 
             className="flex-shrink-0 w-[240px] px-4"
           >
-            <div className="bg-white p-6 rounded-[2.5rem] border border-accent/20 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow group">
+            <div className="bg-white p-6 rounded-2xl border border-accent/20 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow group">
               <div className="bg-nav-bg p-3 rounded-full shrink-0 group-hover:scale-110 transition-transform">
                 {renderIcon(feature.iconName)}
               </div>
