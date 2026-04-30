@@ -38,33 +38,14 @@ export default function ContactPage() {
 
       <div className="max-w-4xl mx-auto p-6 space-y-8">
         <div className="text-center space-y-4 py-8">
-          <h2 className="text-3xl font-bold text-gray-800 font-ornate italic">Nous sommes à votre écoute</h2>
+          <h2 className="text-3xl font-bold text-gray-800 font-ornate italic">نحن في خدمتكم</h2>
           <p className="text-gray-500 max-w-md mx-auto">
-            Une question sur un produit ou une commande ? N'hésitez pas à nous contacter via nos différents canaux.
+            هل لديك سؤال حول منتج أو طلب؟ لا تتردد في التواصل معنا عبر قنوات الاتصال المختلفة لدينا.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Contact Cards */}
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
-            <div className="p-4 bg-[#fce6d2] rounded-full text-orange-600">
-              <Phone className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">Téléphone</h3>
-              <p className="text-lg font-medium text-accent">{settings?.contactPhone || "+213 (0) 5XX XX XX XX"}</p>
-            </div>
-          </div>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
-            <div className="p-4 bg-[#fce6d2] rounded-full text-orange-600">
-              <Mail className="w-8 h-8" />
-            </div>
-            <div>
-              <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">البريد الإلكتروني</h3>
-              <p className="text-lg font-medium text-accent">{settings?.contactEmail || "contact@fatihastyle18.com"}</p>
-            </div>
-          </div>
 
           <a 
             href={`https://wa.me/${settings?.contactPhone?.replace(/[^0-9]/g, '')}`} 
@@ -81,15 +62,20 @@ export default function ContactPage() {
             </div>
           </a>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4">
+          <a
+            href="https://www.instagram.com/fatiha_.style18/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4 hover:bg-pink-50 transition-colors"
+          >
             <div className="p-4 bg-[#FEE4ED] rounded-full text-pink-600">
               <Globe className="w-8 h-8" />
             </div>
             <div>
               <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">Instagram</h3>
-              <p className="text-lg font-medium text-pink-600">@fatihastyle18</p>
+              <p className="text-lg font-medium text-pink-600">@fatiha_.style18</p>
             </div>
-          </div>
+          </a>
         </div>
 
         <section className="bg-white p-8 rounded-xl shadow-sm border border-accent/10">
@@ -97,13 +83,13 @@ export default function ContactPage() {
             <div className="p-3 bg-[#fce6d2] rounded-full text-orange-600">
               <MapPin className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">Notre Boutique</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">متجرنا</h2>
           </div>
           <p className="text-gray-600 leading-relaxed">
-            Venez nous rendre visite dans notre boutique à Alger. Nous serons ravis de vous accueillir et de vous présenter nos collections physiquement.
+            زورونا في متجرنا بالجزائر العاصمة. سنكون سعداء باستقبالكم وعرض مجموعاتنا عليكم شخصيًا.
           </p>
           <div className="mt-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-            <p className="font-bold text-gray-700">Adresse :</p>
+            <p className="font-bold text-gray-700">العنوان:</p>
             <p className="text-gray-500">Alger, Algérie</p>
           </div>
         </section>

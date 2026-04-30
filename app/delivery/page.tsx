@@ -18,7 +18,7 @@ export default function DeliveryPage() {
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
           <ChevronLeft className="w-6 h-6 text-gray-700" />
         </Link>
-        <h1 className="text-xl font-bold text-gray-900 font-ornate">Politique de Livraison</h1>
+        <h1 className="text-xl font-bold text-gray-900 font-ornate">سياسة التوصيل</h1>
       </div>
 
       <div className="max-w-4xl mx-auto p-6 space-y-8">
@@ -27,10 +27,10 @@ export default function DeliveryPage() {
             <div className="p-3 bg-orange-50 rounded-full text-orange-600">
               <Truck className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">Zones de Livraison</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">مناطق التوصيل</h2>
           </div>
           <p className="text-gray-600 leading-relaxed text-lg">
-            Nous livrons dans les <span className="font-bold text-accent">58 wilayas</span> d'Algérie. Que vous soyez à Alger, Oran, Constantine ou dans le sud, nous faisons tout pour que vos articles vous parviennent rapidement.
+            نقوم بالتوصيل في جميع <span className="font-bold text-accent">الولايات الجزائرية  58 </span>. سواء كنت في الجزائر العاصمة، وهران، قسنطينة أو في الجنوب، فإننا نبذل قصارى جهدنا لوصول طلباتك إليك بسرعة.
           </p>
         </section>
 
@@ -38,22 +38,22 @@ export default function DeliveryPage() {
           <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 space-y-4">
             <div className="flex items-center gap-3 text-accent transition-colors">
               <Clock className="w-6 h-6" />
-              <h3 className="font-bold font-ornate italic text-xl">Délais</h3>
+              <h3 className="font-bold font-ornate italic text-xl">المدة الزمنية</h3>
             </div>
             <ul className="space-y-2 text-gray-600">
-              <li>• Alger : 24h à 48h</li>
-              <li>• Grandes villes : 2 à 4 jours</li>
-              <li>• Autres Wilayas : 3 à 7 jours</li>
+              <li>الجزائر العاصمة: 24 ساعة</li>
+              <li>• المدن الكبرى: من يوم إلى يومين</li>
+              <li>• الولايات الأخرى: من يومين إلى 3 أيام</li>
             </ul>
           </div>
 
           <div className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 space-y-4">
             <div className="flex items-center gap-3 text-accent transition-colors">
               <ShieldCheck className="w-6 h-6" />
-              <h3 className="font-bold font-ornate italic text-xl">Garantie</h3>
+              <h3 className="font-bold font-ornate italic text-xl">الضمان</h3>
             </div>
             <p className="text-gray-600">
-              Vos articles sont emballés avec le plus grand soin pour éviter tout dommage durant le transport.
+              يتم تغليف طلباتك بأقصى درجات العناية لتجنب أي تلف أثناء النقل.
             </p>
           </div>
         </div>
@@ -63,16 +63,16 @@ export default function DeliveryPage() {
             <div className="p-3 bg-accent/10 rounded-full text-accent">
               <MapPin className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">Suivi de commande</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">تتبع الطلب</h2>
           </div>
           <p className="text-gray-600 leading-relaxed">
-            Une fois votre commande validée, notre service logistique vous contactera par téléphone pour confirmer les détails de la livraison et l'adresse exacte. Vous pouvez également nous contacter à tout moment pour connaître le statut de votre colis.
+            بعد تأكيد طلبك، سيتصل بك فريق التوصيل لدينا هاتفياً لتأكيد تفاصيل التوصيل والعنوان الدقيق. كما يمكنك الاتصال بنا في أي وقت لمعرفة حالة طلبك.
           </p>
         </section>
 
         <div className="bg-accent p-8 rounded-xl text-white text-center shadow-lg">
-          <h3 className="text-xl font-bold font-ornate italic mb-2">Paiement à la livraison</h3>
-          <p className="opacity-90">Réglez vos achats en toute confiance dès réception de votre colis.</p>
+          <h3 className="text-xl font-bold font-ornate italic mb-2">الدفع عند الاستلام</h3>
+          <p className="opacity-90">ادفع مقابل مشترياتك بثقة تامة عند استلام طلبك.</p>
         </div>
       </div>
       

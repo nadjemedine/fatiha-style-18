@@ -18,7 +18,7 @@ export default function TermsPage() {
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
           <ChevronLeft className="w-6 h-6 text-gray-700" />
         </Link>
-        <h1 className="text-xl font-bold text-gray-900 font-ornate">Conditions Générales</h1>
+        <h1 className="text-xl font-bold text-gray-900 font-ornate">الشروط والأحكام</h1>
       </div>
 
       <div className="max-w-4xl mx-auto p-6 space-y-8">
@@ -27,10 +27,10 @@ export default function TermsPage() {
             <div className="p-3 bg-blue-50 rounded-full text-blue-600">
               <FileText className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">Utilisation du Site</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">استخدام الموقع</h2>
           </div>
           <p className="text-gray-600 leading-relaxed">
-            En accédant à ce site, vous acceptez nos conditions d'utilisation. Le contenu de ce site est la propriété de Fatiha Style 18 et est protégé par les lois sur la propriété intellectuelle.
+            بالوصول إلى هذا الموقع، فإنك توافق على شروط الاستخدام الخاصة بنا. محتوى هذا الموقع هو ملك لـ Fatiha Style 18 و محمي بموجب قوانين الملكية الفكرية.
           </p>
         </section>
 
@@ -39,10 +39,10 @@ export default function TermsPage() {
             <div className="p-3 bg-green-50 rounded-full text-green-600">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">Protection des Données</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">حماية البيانات</h2>
           </div>
           <p className="text-gray-600 leading-relaxed">
-            Nous accordons une grande importance à la confidentialité de vos données personnelles. Les informations collectées lors de vos commandes sont utilisées exclusivement pour le traitement de celles-ci et pour améliorer votre expérience sur notre boutique.
+            نولي اهتمامًا كبيرًا بخصوصية بياناتك الشخصية. يتم استخدام المعلومات التي يتم جمعها عند إجراء طلباتك بشكل حصري لمعالجة هذه الطلبات ولتحسين تجربتك في متجرنا.
           </p>
         </section>
 
@@ -51,15 +51,15 @@ export default function TermsPage() {
             <div className="p-3 bg-purple-50 rounded-full text-purple-600">
               <Scale className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">Commandes et Paiements</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">الطلبات والدفع</h2>
           </div>
           <p className="text-gray-600 leading-relaxed mb-4">
-            Toute commande passée sur notre site implique l'acceptation intégrale des prix et descriptions des produits disponibles à la vente.
+            أي طلب يتم وضعه عبر موقعنا يعني الموافقة الكاملة على الأسعار ووصف المنتجات المتاحة للبيع.
           </p>
           <ul className="list-disc pl-6 space-y-2 text-gray-600">
-            <li>Le paiement s'effectue généralement à la livraison (Cash on Delivery).</li>
-            <li>Les prix sont affichés en Dinars Algériens (DZD).</li>
-            <li>Nous nous réservons le droit d'annuler ou de refuser toute commande en cas de litige.</li>
+            <li>يتم الدفع عادةً عند التسليم (الدفع عند الاستلام).</li>
+            <li>تظهر الأسعار بالدينار الجزائري (DZD).</li>
+            <li>نحتفظ بالحق في إلغاء أو رفض أي طلب في حالة وجود نزاع.</li>
           </ul>
         </section>
 
