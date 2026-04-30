@@ -100,7 +100,7 @@ export default function CheckoutPage() {
           href="/" 
           className="w-full max-w-sm py-5 bg-[#c9beda] text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
         >
-          Retour à l'accueil
+          العودة إلى الصفحة الرئيسية
         </Link>
       </div>
     );
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
         <Link href="/" className="p-2 hover:bg-[#FEE4ED] rounded-full transition-colors">
           <ArrowLeft className="w-6 h-6 text-gray-700" />
         </Link>
-        <h1 className="text-xl font-bold text-gray-900 font-ornate italic">Finaliser la commande</h1>
+        <h1 className="text-xl font-bold text-gray-900 font-ornate italic">إتمام الطلب</h1>
       </div>
 
       <div className="max-w-4xl mx-auto p-4 lg:p-8">
@@ -122,20 +122,20 @@ export default function CheckoutPage() {
             <div className="bg-[#FEE4ED] p-8 rounded-full mb-6">
               <ShoppingBag className="w-16 h-16 text-[#c9beda]" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2 font-ornate italic">Votre panier est vide</h2>
-            <p className="text-gray-500 mb-8">Commencez vos achats pour ajouter des produits</p>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2 font-ornate italic">سلتك فارغة</h2>
+            <p className="text-gray-500 mb-8">ابدأ التسوق لإضافة منتجات إلى سلتك</p>
             <Link 
               href="/" 
               className="px-12 py-4 bg-[#c9beda] text-white rounded-[2rem] font-bold hover:shadow-lg transition-all"
             >
-              Voir les produits
+              مشاهدة المنتجات
             </Link>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Top: Product List */}
             <div className="bg-white p-6 lg:p-10 rounded-2xl border border-[#d6c9e8] shadow-sm">
-              <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8">Articles à commander ({cartCount})</h2>
+              <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 text-right">المنتجات المراد طلبها ({cartCount})</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {cart.map((item, index) => (
                   <div key={`${item.id}-${item.color}-${item.size}-${item.fabric}-${index}`} className="flex gap-4 p-4 bg-gray-50 rounded-[2rem] border border-[#d6c9e8]/30 group transition-all hover:shadow-md">
@@ -198,12 +198,12 @@ export default function CheckoutPage() {
                   {/* Full Name */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                      <User className="w-3 h-3" /> Nom et Prénom
+                      <User className="w-3 h-3" /> الاسم واللقب
                     </label>
                     <input 
                       type="text"
                       required
-                      placeholder="Ex: Ahmed Benali"
+                      placeholder="مثال: أحمد بن علي"
                       className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
                       value={formData.fullName}
                       onChange={(e) => setFormData({...formData, fullName: e.target.value})}
@@ -218,7 +218,7 @@ export default function CheckoutPage() {
                     <input 
                       type="tel"
                       required
-                      placeholder="Ex: 05xx xx xx xx"
+                      placeholder="مثال: 05xx xx xx xx"
                       className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                        <MapPin className="w-3 h-3" /> Wilaya (58)
+                        <MapPin className="w-3 h-3" /> الولاية (58)
                       </label>
                       <select 
                         required
@@ -237,7 +237,7 @@ export default function CheckoutPage() {
                         value={formData.wilaya}
                         onChange={(e) => setFormData({...formData, wilaya: e.target.value})}
                       >
-                        <option value="">Sélectionner</option>
+                        <option value="">اختر الولاية</option>
                         {wilayas.map(w => (
                           <option key={w.id} value={w.name}>{w.id} - {w.name}</option>
                         ))}
@@ -245,12 +245,12 @@ export default function CheckoutPage() {
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                        <MapPin className="w-3 h-3" /> Commune
+                        <MapPin className="w-3 h-3" /> البلدية
                       </label>
                       <input 
                         type="text"
                         required
-                        placeholder="Ex: Kouba"
+                        placeholder="مثال: القبة"
                         className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
                         value={formData.commune}
                         onChange={(e) => setFormData({...formData, commune: e.target.value})}
@@ -271,7 +271,7 @@ export default function CheckoutPage() {
                           formData.deliveryType === 'home' ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda]' : 'border-gray-50 text-gray-400 bg-gray-50'
                         }`}
                       >
-                        <div className="text-sm">À domicile</div>
+                        <div className="text-sm">إلى المنزل</div>
                         {formData.wilaya && homePrice > 0 && (
                           <div className="text-xs mt-1 font-bold">{homePrice} DA</div>
                         )}
@@ -283,7 +283,7 @@ export default function CheckoutPage() {
                           formData.deliveryType === 'office' ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda]' : 'border-gray-50 text-gray-400 bg-gray-50'
                         }`}
                       >
-                        <div className="text-sm">Point Relais / Bureau</div>
+                        <div className="text-sm">مكتب ياليدين / نقطة سحب</div>
                         {formData.wilaya && officePrice > 0 && (
                           <div className="text-xs mt-1 font-bold">{officePrice} DA</div>
                         )}
@@ -296,7 +296,7 @@ export default function CheckoutPage() {
               {/* Right: Order Summary */}
               <div className="space-y-6">
                 <div className="bg-white p-8 rounded-2xl border border-[#d6c9e8] shadow-sm flex flex-col h-full">
-                  <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 border-b border-gray-50 pb-4">Résumé financier</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 border-b border-gray-50 pb-4 text-right">ملخص الطلب</h2>
                   
                   <div className="mt-auto space-y-6">
                     <div className="space-y-4">
@@ -306,7 +306,7 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex justify-between text-gray-500 font-medium">
                         <span>التوصيل (Yalidine)</span>
-                        <span className="text-accent">{deliveryPrice > 0 ? `${deliveryPrice} DA` : 'Sélectionner wilaya'}</span>
+                        <span className="text-accent">{deliveryPrice > 0 ? `${deliveryPrice} DA` : 'اختر الولاية'}</span>
                       </div>
                       <div className="h-px bg-gray-100 my-4" />
                       <div className="flex justify-between items-center">
@@ -319,7 +319,7 @@ export default function CheckoutPage() {
                       type="submit"
                       className="w-full py-6 bg-[#c9beda] text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all transform active:scale-95"
                     >
-                      Confirmer la commande (COD)
+                      تأكيد الطلب (الدفع عند الاستلام)
                     </button>
                   </div>
                 </div>
@@ -329,8 +329,8 @@ export default function CheckoutPage() {
                   <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm">
                     <CheckCircle2 className="w-5 h-5 text-[#c9beda]" />
                   </div>
-                  <p className="text-xs text-gray-600 font-medium leading-relaxed">
-                    Paiement à la livraison (Cash on Delivery). Vous payez uniquement lorsque vous recevez votre commande.
+                  <p className="text-xs text-gray-600 font-medium leading-relaxed text-right">
+                    الدفع عند الاستلام (COD). أنت تدفع فقط عندما تستلم طلبك.
                   </p>
                 </div>
               </div>
