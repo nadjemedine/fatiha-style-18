@@ -60,9 +60,9 @@ export default function FavoritesPage() {
             <p className="text-gray-500 mb-8">Explorez la boutique et ajoutez vos produits préférés</p>
             <Link 
               href="/" 
-              className="px-8 py-3 bg-accent text-white rounded-2xl font-bold hover:shadow-lg transition-all"
+              className="inline-block px-6 py-2.5 bg-gradient-to-r from-accent to-purple-400 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all border-2 border-white/20 backdrop-blur-sm"
             >
-              Retour à la boutique
+              العودة إلى المتجر
             </Link>
           </div>
         ) : (

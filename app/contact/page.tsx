@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ChevronLeft, Phone, Mail, Globe, MessageCircle, MapPin } from 'lucide-react';
+import { ChevronLeft, Phone, Mail, Globe, الرسالةCircle, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import BottomNav from '@/components/BottomNav';
 import TopBar from '@/components/TopBar';
@@ -33,7 +33,7 @@ export default function ContactPage() {
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
           <ChevronLeft className="w-6 h-6 text-gray-700" />
         </Link>
-        <h1 className="text-xl font-bold text-gray-900 font-ornate">Contactez-nous</h1>
+        <h1 className="text-xl font-bold text-gray-900 font-ornate">اتصل بنا</h1>
       </div>
 
       <div className="max-w-4xl mx-auto p-6 space-y-8">
@@ -61,8 +61,8 @@ export default function ContactPage() {
               <Mail className="w-8 h-8" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">Email</h3>
-              <p className="text-lg font-medium text-accent">{settings?.contactEmail || "contact@fatihastyle18.com"}</p>
+              <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">البريد الإلكتروني</h3>
+              <p className="text-lg font-medium text-accent">{settings?.contactالبريد الإلكتروني || "contact@fatihastyle18.com"}</p>
             </div>
           </div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
             className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4 hover:bg-green-50 transition-colors"
           >
             <div className="p-4 bg-green-100 rounded-full text-green-600">
-              <MessageCircle className="w-8 h-8" />
+              <الرسالةCircle className="w-8 h-8" />
             </div>
             <div>
               <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">WhatsApp</h3>

@@ -40,11 +40,11 @@ const CategoryTabs = () => {
   }, []);
 
   const priceOptions = [
-    { label: 'Tout les prix', value: 'all' },
-    { label: 'أقل من 2000 DA', value: '0-2000' },
-    { label: '2000 - 4000 DA', value: '2000-4000' },
-    { label: '4000 - 6000 DA', value: '4000-6000' },
-    { label: 'أكثر من 6000 DA', value: '6000-999999' }
+    { label: 'جميع الأسعار', value: 'all' },
+    { label: 'أقل من 2000 د.ج', value: '0-2000' },
+    { label: '2000 - 4000 د.ج', value: '2000-4000' },
+    { label: '4000 - 6000 د.ج', value: '4000-6000' },
+    { label: 'أكثر من 6000 د.ج', value: '6000-999999' }
   ];
 
   const currentCategoryLabel = selectedCategory === 'Tout' ? 'Tout' : selectedCategory;
@@ -137,7 +137,7 @@ const CategoryTabs = () => {
             }}
             className="text-xs font-bold text-gray-400 hover:text-[#c9beda] transition-colors"
           >
-            مسح الفلاتر
+            إزالة الفلاتر
           </button>
         </div>
       )}

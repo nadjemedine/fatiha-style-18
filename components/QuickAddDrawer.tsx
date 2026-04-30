@@ -95,7 +95,7 @@ const QuickAddDrawer = () => {
             {/* Color Selection */}
             {product.colors && product.colors.length > 0 && (
               <div className="space-y-4">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest text-center">Couleur: {selectedColor}</h4>
+                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest text-center">اللون: {selectedColor}</h4>
                 <div className="flex flex-wrap justify-center gap-3">
                   {product.colors.map((color: any, idx: number) => {
                     const colorName = typeof color === 'string' ? color : color.name;
@@ -119,7 +119,7 @@ const QuickAddDrawer = () => {
             {product.sizes && product.sizes.length > 0 && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Taille</h4>
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">المقاس</h4>
                   <button className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 hover:text-accent transition-colors">
                     <Ruler className="w-3 h-3" />
                     Guide des tailles

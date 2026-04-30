@@ -16,7 +16,7 @@ export default function CheckoutPage() {
     commune: '',
     deliveryType: 'home' // 'home' or 'office'
   });
-  const [availableCommunes, setAvailableCommunes] = useState<string[]>([]);
+  const [availableالبلديةs, setAvailableCommunes] = useState<string[]>([]);
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -49,7 +49,7 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName || !formData.phone || !formData.wilaya) {
-      alert("Veuillez remplir tous les champs obligatoires");
+      alert("يرجى ملء جميع الحقول المطلوبة");
       return;
     }
     
@@ -92,9 +92,9 @@ export default function CheckoutPage() {
         <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-8 animate-bounce">
           <CheckCircle2 className="w-12 h-12 text-green-500" />
         </div>
-        <h1 className="text-4xl font-black text-gray-900 font-ornate italic mb-4">Merci pour votre commande !</h1>
+        <h1 className="text-4xl font-black text-gray-900 font-ornate italic mb-4">شكراً على طلبك!</h1>
         <p className="text-gray-600 text-lg mb-12 max-w-md mx-auto">
-          Votre commande a été reçue avec succès. Notre équipe vous contactera bientôt par téléphone pour confirmer les détails.
+          تم استلام طلبك بنجاح. سيتواصل معك فريقنا قريباً عبر الهاتف لتأكيد التفاصيل.
         </p>
         <Link 
           href="/" 
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
               <div className="space-y-6">
                 <div className="bg-white p-8 rounded-2xl border border-[#d6c9e8] shadow-sm space-y-6">
                   <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-6 border-b border-gray-50 pb-4">
-                    Informations de livraison
+                    معلومات التوصيل
                   </h2>
                   
                   {/* Full Name */}
@@ -213,7 +213,7 @@ export default function CheckoutPage() {
                   {/* Phone */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                      <Phone className="w-3 h-3" /> Numéro de téléphone
+                      <Phone className="w-3 h-3" /> رقم الهاتف
                     </label>
                     <input 
                       type="tel"
@@ -261,7 +261,7 @@ export default function CheckoutPage() {
                   {/* Delivery Type */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                      <Truck className="w-3 h-3" /> Type de livraison
+                      <Truck className="w-3 h-3" /> نوع التوصيل
                     </label>
                     <div className="grid grid-cols-2 gap-4">
                       <button 
@@ -301,16 +301,16 @@ export default function CheckoutPage() {
                   <div className="mt-auto space-y-6">
                     <div className="space-y-4">
                       <div className="flex justify-between text-gray-500 font-medium">
-                        <span>Sous-total</span>
+                        <span>المجموع الفرعي</span>
                         <span>{total} DA</span>
                       </div>
                       <div className="flex justify-between text-gray-500 font-medium">
-                        <span>Livraison (Yalidine)</span>
+                        <span>التوصيل (Yalidine)</span>
                         <span className="text-accent">{deliveryPrice > 0 ? `${deliveryPrice} DA` : 'Sélectionner wilaya'}</span>
                       </div>
                       <div className="h-px bg-gray-100 my-4" />
                       <div className="flex justify-between items-center">
-                        <span className="text-xl font-bold text-gray-900">Total à payer</span>
+                        <span className="text-xl font-bold text-gray-900">المجموع الكلي</span>
                         <span className="text-3xl font-black text-[#c9beda]">{finalTotal} DA</span>
                       </div>
                     </div>

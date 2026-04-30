@@ -65,7 +65,7 @@ export default function TermsPage() {
 
         <div className="p-8 bg-gray-50 rounded-xl text-center border border-gray-200">
           <p className="text-sm text-gray-500 italic">
-            Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+            آخر تحديث : {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
         </div>
       </div>

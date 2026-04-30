@@ -86,3 +86,8 @@ body {
 .animate-ticker-hover-pause:hover {
   animation-play-state: paused;
 }
+
+/* Arabic font support */
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', 'Arial', sans-serif;
+}

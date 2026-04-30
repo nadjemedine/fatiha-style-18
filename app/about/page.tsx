@@ -45,7 +45,7 @@ export default function AboutPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-accent/5 p-8 rounded-xl border border-accent/10">
-            <h3 className="text-xl font-bold text-accent font-ornate mb-4">Qualité Artisanale</h3>
+            <h3 className="text-xl font-bold text-accent font-ornate mb-4">الجودة Artisanale</h3>
             <p className="text-gray-600">Chaque pièce est sélectionnée pour son excellence et son style intemporel.</p>
           </div>
           <div className="bg-accent/5 p-8 rounded-xl border border-accent/10">

@@ -19,11 +19,11 @@ const CartDrawer = () => {
       />
       
       {/* Drawer */}
-      <div className="relative ml-auto h-full w-[80%] sm:w-1/2 bg-background shadow-2xl flex flex-col animate-slide-left border-l border-accent/20">
+      <div className="relative mr-auto h-full w-[80%] sm:w-1/2 bg-background shadow-2xl flex flex-col animate-slide-right border-r border-accent/20">
         <div className="flex items-center justify-between p-4 border-b border-accent/20 bg-nav-bg">
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-accent" />
-            <h2 className="text-lg font-bold text-gray-900">Panier ({cartCount})</h2>
+            <h2 className="text-lg font-bold text-gray-900">السلة ({cartCount})</h2>
           </div>
           <button 
             onClick={() => setIsCartOpen(false)}
@@ -37,7 +37,7 @@ const CartDrawer = () => {
           {cart.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center opacity-50">
               <ShoppingBag className="w-16 h-16 mb-4 text-accent" />
-              <p className="text-gray-500 font-medium">Le panier est actuellement vide</p>
+              <p className="text-gray-500 font-medium">السلة فارغة حالياً</p>
             </div>
           ) : (
             cart.map((item, index) => (
@@ -101,7 +101,7 @@ const CartDrawer = () => {
         {cart.length > 0 && (
           <div className="p-4 border-t border-accent/20 bg-nav-bg space-y-4 pb-8">
             <div className="flex items-center justify-between">
-              <span className="text-gray-500 font-medium">Total</span>
+              <span className="text-gray-500 font-medium">المجموع</span>
               <span className="text-xl font-bold text-accent">
                 {cart.reduce((acc, item) => acc + item.price * item.quantity, 0)} DA
               </span>
@@ -111,7 +111,7 @@ const CartDrawer = () => {
               onClick={() => setIsCartOpen(false)}
               className="w-full py-4 bg-accent text-white rounded-2xl font-bold hover:shadow-lg transition-all transform active:scale-[0.98] flex items-center justify-center"
             >
-              Commander
+              اطلب الآن
             </Link>
           </div>
         )}

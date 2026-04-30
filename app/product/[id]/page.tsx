@@ -53,9 +53,9 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
   if (!product) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4 text-center">
-        <h1 className="text-base font-bold text-gray-800 mb-4">Produit non trouvé</h1>
+        <h1 className="text-base font-bold text-gray-800 mb-4">المنتج غير موجود</h1>
         <Link href="/" className="px-4 py-2 bg-accent text-white rounded-xl font-bold">
-          Retour à la boutique
+          العودة إلى المتجر
         </Link>
       </div>
     );
@@ -87,9 +87,9 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
       <div className="h-4" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8">
-        <Link href="/" className="inline-flex items-center gap-2 text-[#c9beda] font-bold text-sm mb-6 hover:underline">
+        <Link href="/" className="inline-flex items-center gap-2 text-[#c9beda] font-bold text-sm mb-6 hover:underline px-4 py-2 bg-white/60 backdrop-blur-sm rounded-lg border border-[#d6c9e8]/30 shadow-sm hover:shadow-md transition-all">
           <ChevronLeft className="w-4 h-4" />
-          Retour à la boutique
+          العودة إلى المتجر
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -147,7 +147,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
               <div className="flex flex-col gap-4 p-6 bg-gray-50 rounded-lg border border-[#d6c9e8]">
                 {product.fabric && (
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest shrink-0">Tissu:</span>
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest shrink-0">القماش:</span>
                     <span className="px-4 py-1.5 bg-[#FEE4ED] text-[#c9beda] rounded-full font-bold text-sm shadow-sm border border-[#c9beda]/20">
                       {product.fabric}
                     </span>
@@ -157,7 +157,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   <div className="space-y-2">
                     <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
                       <Ruler className="w-3 h-3" />
-                      Détails des mesures (القياسات):
+                      تفاصيل القياسات:
                     </h3>
                     <p className="text-sm text-gray-600 bg-white p-4 rounded-md border border-[#d6c9e8]/50 whitespace-pre-line leading-relaxed">
                       {product.measurements}
@@ -170,7 +170,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
             {/* Colors */}
             {product.colors && product.colors.length > 0 && (
               <div>
-                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-4">Couleur: {selectedColor}</h3>
+                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-4">اللون: {selectedColor}</h3>
                 <div className="flex gap-3 flex-wrap">
                   {product.colors.map((color: any) => {
                     const colorName = typeof color === 'string' ? color : color.name;
@@ -198,7 +198,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
             {/* Sizes */}
             {product.sizes && product.sizes.length > 0 && (
               <div>
-                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-3">Taille</h3>
+                <h3 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-3">المقاس</h3>
                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
                   {product.sizes.map((size: string) => (
                     <button 
@@ -223,14 +223,14 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   className="w-full py-3 bg-[#c9beda] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:shadow-xl transition-all transform active:scale-[0.98] text-sm shadow-[0_10px_20px_-10px_rgba(201,190,218,0.5)]"
                 >
                   <CreditCard className="w-4 h-4" />
-                  Commander maintenant
+                  اطلب الآن
                 </button>
                 <button 
                   onClick={handleAddToCart}
                   className="w-full py-3 bg-white border-2 border-[#c9beda] text-[#c9beda] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#FEE4ED] transition-all"
                 >
                   <ShoppingBag className="w-4 h-4" />
-                  Ajouter au panier
+                  أضف إلى السلة
                 </button>
               </div>
 
@@ -287,7 +287,7 @@ const RelatedProducts = ({ categoryId, currentProductId }: { categoryId?: string
   return (
     <div className="mt-20">
       <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 text-center">
-        Produits similaires
+        منتجات مشابهة
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {relatedProducts.map((product) => (

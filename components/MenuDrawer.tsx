@@ -14,10 +14,10 @@ const MenuDrawer = () => {
   const categories: string[] = [];
 
   const pages = [
-    { name: "À propos du magasin", path: "/about" },
-    { name: "Contactez-nous", path: "/contact" },
-    { name: "Conditions Générales", path: "/terms" },
-    { name: "Politique de Livraison", path: "/delivery" }
+    { name: "من نحن", path: "/about" },
+    { name: "اتصل بنا", path: "/contact" },
+    { name: "الشروط العامة", path: "/terms" },
+    { name: "سياسة التوصيل", path: "/delivery" }
   ];
 
   return (
@@ -29,7 +29,7 @@ const MenuDrawer = () => {
       />
       
       {/* Drawer */}
-      <div className="relative mr-auto h-full w-[80%] sm:w-1/2 bg-background shadow-2xl flex flex-col animate-slide-right border-r border-accent/20">
+      <div className="relative ml-auto h-full w-[80%] sm:w-1/2 bg-background shadow-2xl flex flex-col animate-slide-left border-l border-accent/20">
         <div className="p-4 border-b border-accent/20 bg-nav-bg">
           <div className="flex items-center justify-between mb-6">
             <div className="h-14">
@@ -52,7 +52,7 @@ const MenuDrawer = () => {
               }`}
             >
               <Store className="w-4 h-4" />
-              Boutique
+              المتجر
             </button>
             <button 
               onClick={() => setActiveTab('pages')}
@@ -61,7 +61,7 @@ const MenuDrawer = () => {
               }`}
             >
               <FileText className="w-4 h-4" />
-              Pages
+              الصفحات
             </button>
           </div>
         </div>
@@ -71,7 +71,7 @@ const MenuDrawer = () => {
             <div className="space-y-2">
             <div className="flex flex-col items-center justify-center py-12 text-center opacity-40">
               <Store className="w-12 h-12 mb-3 text-accent" strokeWidth={1} />
-              <p className="text-sm font-medium font-ornate italic text-gray-500">Les catégories seront bientôt disponibles</p>
+              <p className="text-sm font-medium font-ornate italic text-gray-500">التصنيفات ستكون متاحة قريباً</p>
             </div>
             </div>
           ) : (

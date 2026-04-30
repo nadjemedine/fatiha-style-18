@@ -41,19 +41,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
           />
           <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
           
-          {/* Quick Actions */}
-          <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
+          {/* Quick Actions - Always visible on all devices */}
+          <div className="absolute top-3 right-3 flex flex-col gap-2">
             <button 
               onClick={handleToggleFavorite}
-              className={`p-2 bg-white rounded-full shadow-lg transition-colors ${favorited ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`}
+              className={`p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all active:scale-90 ${favorited ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`}
             >
-              <Heart className="w-5 h-5" strokeWidth={1.5} fill={favorited ? 'currentColor' : 'none'} />
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={1.5} fill={favorited ? 'currentColor' : 'none'} />
             </button>
             <button 
               onClick={handleAddToCart}
-              className="p-2 bg-accent rounded-full shadow-lg text-white hover:opacity-90 transition-opacity"
+              className="p-2 bg-accent/90 backdrop-blur-sm rounded-full shadow-lg text-white hover:opacity-90 transition-all active:scale-90"
             >
-              <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={1.5} />
             </button>
           </div>
         </div>

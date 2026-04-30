@@ -15,14 +15,14 @@ const BottomNav = () => {
         <div className="p-0.5 rounded-xl bg-accent/20 text-accent group-hover:scale-110 transition-transform">
           <Home className="w-5 h-5" strokeWidth={1.5} />
         </div>
-        <span className="text-[9px] font-bold text-accent tracking-wider uppercase">Boutique</span>
+        <span className="text-[9px] font-bold text-accent tracking-wider uppercase">المتجر</span>
       </Link>
 
       <Link href="/favorites" className="flex flex-col items-center gap-0.5 group relative">
         <div className="p-0.5 rounded-xl text-accent/50 group-hover:bg-accent/20 group-hover:text-accent transition-all">
           <Heart className="w-5 h-5" strokeWidth={1.5} />
         </div>
-        <span className="text-[9px] font-bold text-accent/50 tracking-wider uppercase">Favoris</span>
+        <span className="text-[9px] font-bold text-accent/50 tracking-wider uppercase">المفضلة</span>
         {favoritesCount > 0 && (
           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[8px] w-3.5 h-3.5 flex items-center justify-center rounded-full font-bold">
             {favoritesCount}
@@ -37,7 +37,7 @@ const BottomNav = () => {
         <div className="p-0.5 rounded-xl text-accent/50 group-hover:bg-accent/20 group-hover:text-accent transition-all">
           <BagIcon className="w-5 h-5" strokeWidth={1.5} />
         </div>
-        <span className="text-[9px] font-bold text-accent/50 tracking-wider uppercase">Panier</span>
+        <span className="text-[9px] font-bold text-accent/50 tracking-wider uppercase">السلة</span>
         {cartCount > 0 && (
           <span className="absolute -top-1 -right-1 bg-accent text-white text-[8px] w-3.5 h-3.5 flex items-center justify-center rounded-full font-bold">
             {cartCount}

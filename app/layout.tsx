@@ -22,13 +22,13 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fatihastyle18.store"),
   title: {
-    default: "Boutique fatihastyle 18",
+    default: "فاتيحا ستايل 18",
     template: "%s | Boutique fatihastyle 18",
   },
-  description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives de vêtements traditionnels et modernes sur Boutique fatihastyle 18.",
+  description: "متجر أزياء راقية وأنيقة في الجزائر. اكتشف مجموعاتنا الحصرية من الملابس التقليدية والعصرية.",
   openGraph: {
     title: "Boutique fatihastyle 18",
-    description: "Boutique de haute couture et mode élégante à Alger. Découvrez nos collections exclusives.",
+    description: "متجر أزياء راقية وأنيقة في الجزائر. اكتشف مجموعاتنا الحصرية.",
     url: "https://fatihastyle18.store",
     siteName: "Boutique fatihastyle 18",
     images: [
@@ -36,16 +36,16 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Logo Boutique fatihastyle 18",
+        alt: "شعار فاتيحا ستايل 18",
       },
     ],
-    locale: "fr_DZ",
+    locale: "ar_DZ",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Boutique fatihastyle 18",
-    description: "Boutique de haute couture et mode élégante à Alger.",
+    description: "متجر أزياء راقية وأنيقة في الجزائر.",
     images: ["/logo.png"],
   },
 };
@@ -64,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="fr"
+      lang="ar" dir="rtl"
       className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
