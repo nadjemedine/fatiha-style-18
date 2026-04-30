@@ -7,13 +7,10 @@ import { useCart } from './CartContext';
 
 import { client } from '@/sanity/lib/client';
 
-const PRODUCTS_PER_PAGE = 8;
-
 const ProductGrid = () => {
   const { searchTerm, selectedCategory, priceFilter } = useCart();
   const [products, setProducts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState(1);
 
   React.useEffect(() => {
     const fetchProducts = async () => {
@@ -32,11 +29,6 @@ const ProductGrid = () => {
     fetchProducts();
   }, []);
 
-  // Reset to page 1 when search or category changes
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, selectedCategory, priceFilter]);
-
   const filteredProducts = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "Tout" || p.categoryTitle === selectedCategory;
@@ -51,11 +43,20 @@ const ProductGrid = () => {
     return matchesSearch && matchesCategory && matchesPrice;
   });
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
-  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const endIndex = startIndex + PRODUCTS_PER_PAGE;
-  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+  // Group products by category
+  const productsByCategory = filteredProducts.reduce((acc: any, product) => {
+    const category = product.categoryTitle || "أخرى";
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(product);
+    return acc;
+  }, {});
+
+  // Sort categories to put "أخرى" at the end if needed
+  const categories = Object.keys(productsByCategory).sort((a, b) => {
+    if (a === "أخرى") return 1;
+    if (b === "أخرى") return -1;
+    return a.localeCompare(b);
+  });
 
   if (loading) {
     return (
@@ -81,49 +82,24 @@ const ProductGrid = () => {
   }
 
   return (
-    <div className="pb-24">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
-        {paginatedProducts.map((product) => (
-          <ProductCard key={product._id} {...product} />
-        ))}
-      </div>
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-12 px-4">
-          <button
-            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-            disabled={currentPage === 1}
-            className="p-2 rounded-lg border-2 border-[#c9beda] text-[#c9beda] hover:bg-[#FEE4ED] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          <div className="flex items-center gap-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${
-                  currentPage === page
-                    ? 'bg-[#c9beda] text-white shadow-md'
-                    : 'border-2 border-[#c9beda] text-[#c9beda] hover:bg-[#FEE4ED]'
-                }`}
-              >
-                {page}
-              </button>
+    <div className="pb-24 space-y-16">
+      {categories.map((category) => (
+        <section key={category} className="animate-fade-in">
+          <div className="flex items-center gap-4 mb-8 px-4">
+            <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent via-[#c9beda]/30 to-[#c9beda]/50" />
+            <h2 className="text-2xl font-bold text-gray-900 font-ornate italic px-6 py-2 bg-white/50 backdrop-blur-sm rounded-full border border-[#c9beda]/20 shadow-sm whitespace-nowrap">
+              {category}
+            </h2>
+            <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent via-[#c9beda]/30 to-[#c9beda]/50" />
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
+            {productsByCategory[category].map((product: any) => (
+              <ProductCard key={product._id} {...product} />
             ))}
           </div>
-
-          <button
-            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-            disabled={currentPage === totalPages}
-            className="p-2 rounded-lg border-2 border-[#c9beda] text-[#c9beda] hover:bg-[#FEE4ED] disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-      )}
+        </section>
+      ))}
     </div>
   );
 };
