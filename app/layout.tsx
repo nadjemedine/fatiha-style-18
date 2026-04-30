@@ -51,11 +51,7 @@ export const metadata: Metadata = {
 };
 
 import { CartProvider } from "@/components/CartContext";
-import CartDrawer from "@/components/CartDrawer";
-import MenuDrawer from "@/components/MenuDrawer";
-import Footer from "@/components/Footer";
-import FeatureCards from "@/components/FeatureCards";
-import QuickAddDrawer from "@/components/QuickAddDrawer";
+import LayoutClient from "@/components/LayoutClient";
 
 export default function RootLayout({
   children,
@@ -67,16 +63,11 @@ export default function RootLayout({
       lang="ar" dir="rtl"
       className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col font-cormorant" style={{ direction: 'rtl' }}>
         <CartProvider>
-          <div className="flex-1">
+          <LayoutClient>
             {children}
-          </div>
-          <FeatureCards />
-          <Footer />
-          <CartDrawer />
-          <MenuDrawer />
-          <QuickAddDrawer />
+          </LayoutClient>
         </CartProvider>
       </body>
     </html>

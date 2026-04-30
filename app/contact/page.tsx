@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ChevronLeft, Phone, Mail, Globe, الرسالةCircle, MapPin } from 'lucide-react';
+import { ChevronLeft, Phone, Mail, Globe, MessageCircle, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import BottomNav from '@/components/BottomNav';
 import TopBar from '@/components/TopBar';
@@ -62,7 +62,7 @@ export default function ContactPage() {
             </div>
             <div>
               <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">البريد الإلكتروني</h3>
-              <p className="text-lg font-medium text-accent">{settings?.contactالبريد الإلكتروني || "contact@fatihastyle18.com"}</p>
+              <p className="text-lg font-medium text-accent">{settings?.contactEmail || "contact@fatihastyle18.com"}</p>
             </div>
           </div>
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
             className="bg-white p-8 rounded-xl shadow-sm border border-accent/10 flex flex-col items-center text-center space-y-4 hover:bg-green-50 transition-colors"
           >
             <div className="p-4 bg-green-100 rounded-full text-green-600">
-              <الرسالةCircle className="w-8 h-8" />
+              <MessageCircle className="w-8 h-8" />
             </div>
             <div>
               <h3 className="font-bold text-gray-800 uppercase tracking-wider text-sm mb-1">WhatsApp</h3>

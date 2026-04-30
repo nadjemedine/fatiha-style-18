@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCart } from './CartContext';
-import { X, ShoppingBag, Ruler, Plus, Minus } from 'lucide-react';
+import { X, ShoppingBag, Plus, Minus } from 'lucide-react';
 import { urlFor } from '@/sanity/lib/image';
 import { client } from '@/sanity/lib/client';
 
@@ -119,18 +119,14 @@ const QuickAddDrawer = () => {
             {product.sizes && product.sizes.length > 0 && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">المقاس</h4>
-                  <button className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 hover:text-accent transition-colors">
-                    <Ruler className="w-3 h-3" />
-                    Guide des tailles
-                  </button>
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest text-right w-full">المقاس: {selectedSize}</h4>
                 </div>
-                <div className="flex flex-wrap justify-center gap-3">
+                <div className="flex overflow-x-auto pb-4 gap-3 no-scrollbar snap-x snap-proximity">
                   {product.sizes.map((size: string) => (
                     <button 
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-12 h-12 flex items-center justify-center rounded-2xl border-2 font-bold transition-all ${
+                      className={`w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl border-2 font-bold text-sm transition-all snap-start ${
                         selectedSize === size ? 'border-accent bg-nav-bg text-accent shadow-md' : 'border-gray-100 text-gray-500'
                       }`}
                     >
