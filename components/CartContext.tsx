@@ -34,6 +34,8 @@ interface CartContextType {
   setIsSearchOpen: (isOpen: boolean) => void;
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
+  priceFilter: string;
+  setPriceFilter: (price: string) => void;
   quickAddProduct: any | null;
   setQuickAddProduct: (product: any | null) => void;
 }
@@ -48,6 +50,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Tout");
+  const [priceFilter, setPriceFilter] = useState("all");
   const [quickAddProduct, setQuickAddProduct] = useState<any | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -137,6 +140,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       searchTerm, setSearchTerm,
       isSearchOpen, setIsSearchOpen,
       selectedCategory, setSelectedCategory,
+      priceFilter, setPriceFilter,
       quickAddProduct, setQuickAddProduct,
       updateQuantity
     }}>

@@ -10,7 +10,7 @@ import { client } from '@/sanity/lib/client';
 const PRODUCTS_PER_PAGE = 8;
 
 const ProductGrid = () => {
-  const { searchTerm, selectedCategory } = useCart();
+  const { searchTerm, selectedCategory, priceFilter } = useCart();
   const [products, setProducts] = React.useState<any[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -35,12 +35,20 @@ const ProductGrid = () => {
   // Reset to page 1 when search or category changes
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, priceFilter]);
 
   const filteredProducts = products.filter(p => {
     const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "Tout" || p.categoryTitle === selectedCategory;
-    return matchesSearch && matchesCategory;
+    
+    // Price filter
+    let matchesPrice = true;
+    if (priceFilter && priceFilter !== 'all') {
+      const [min, max] = priceFilter.split('-').map(Number);
+      matchesPrice = p.price >= min && p.price <= max;
+    }
+    
+    return matchesSearch && matchesCategory && matchesPrice;
   });
 
   // Calculate pagination
