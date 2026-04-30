@@ -2,33 +2,33 @@ import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'project',
-  title: 'Project',
+  title: 'المشروع',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'العنوان',
       type: 'string',
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'type',
-      title: 'Project Type',
+      title: 'نوع المشروع',
       type: 'string',
     }),
     defineField({
       name: 'year',
-      title: 'Year',
+      title: 'السنة',
       type: 'string',
     }),
     defineField({
       name: 'client',
-      title: 'Client',
+      title: 'العميل',
       type: 'string',
     }),
     defineField({
       name: 'link',
-      title: 'Project Link',
+      title: 'رابط المشروع',
       type: 'url',
     }),
   ],

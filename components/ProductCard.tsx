@@ -12,16 +12,26 @@ interface ProductCardProps {
   price: number;
   originalPrice?: number;
   image: any;
+  stock?: any[];
+  sizes?: string[];
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPrice, image }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPrice, image, stock, sizes }) => {
   const { addToCart, toggleFavorite, isFavorite, setQuickAddProduct } = useCart();
   const favorited = isFavorite(_id);
+
+  const isAllOutOfStock = sizes && sizes.length > 0 && 
+    sizes.every((size: string) => {
+      const stockItem = stock?.find((s: any) => s.size === size);
+      return stock && (!stockItem || stockItem.quantity <= 0);
+    });
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setQuickAddProduct({ _id, name, price, image });
+    if (!isAllOutOfStock) {
+      setQuickAddProduct({ _id, name, price, image });
+    }
   };
 
   const handleToggleFavorite = (e: React.MouseEvent) => {
@@ -37,12 +47,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
           <img 
             src={urlFor(image).url()} 
             alt={name} 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${isAllOutOfStock ? 'opacity-60 grayscale-[0.5]' : ''}`} 
           />
           <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
           
+          {isAllOutOfStock && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <div className="bg-red-500/90 backdrop-blur-md text-white px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest shadow-xl whitespace-nowrap">
+                نفذ المنتج
+              </div>
+            </div>
+          )}
+
           {/* Quick Actions - Always visible on all devices */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20">
             <button 
               onClick={handleToggleFavorite}
               className={`p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all active:scale-90 ${favorited ? 'text-red-500' : 'text-gray-400 hover:text-red-500'}`}
@@ -51,7 +69,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
             </button>
             <button 
               onClick={handleAddToCart}
-              className="p-2 bg-accent/90 backdrop-blur-sm rounded-full shadow-lg text-white hover:opacity-90 transition-all active:scale-90"
+              disabled={isAllOutOfStock}
+              className={`p-2 backdrop-blur-sm rounded-full shadow-lg transition-all active:scale-90 ${
+                isAllOutOfStock 
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed hidden' 
+                  : 'bg-accent/90 text-white hover:opacity-90'
+              }`}
             >
               <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={1.5} />
             </button>
@@ -63,7 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
             {name}
           </h3>
           <div className="flex items-center gap-2">
-            <p className="text-lg font-bold text-accent">{price} DA</p>
+            <p className={`text-lg font-bold ${isAllOutOfStock ? 'text-gray-400' : 'text-accent'}`}>{price} DA</p>
             {originalPrice && (
               <p className="text-sm text-gray-400 line-through font-medium">{originalPrice} DA</p>
             )}

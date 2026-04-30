@@ -2,18 +2,18 @@ import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'product',
-  title: 'Product',
+  title: 'المنتج',
   type: 'document',
   fields: [
     defineField({
       name: 'name',
-      title: 'Name',
+      title: 'الاسم',
       type: 'string',
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'الرابط',
       type: 'slug',
       options: {
         source: 'name',
@@ -23,51 +23,51 @@ export default defineType({
     }),
     defineField({
       name: 'price',
-      title: 'Price',
+      title: 'السعر',
       type: 'number',
       validation: Rule => Rule.required().positive(),
     }),
     defineField({
       name: 'originalPrice',
-      title: 'Original Price',
+      title: 'السعر الأصلي',
       type: 'number',
-      description: 'Useful for showing discounts',
+      description: 'مفيد لإظهار التخفيضات',
     }),
     defineField({
       name: 'image',
-      title: 'Main Image',
+      title: 'الصورة الرئيسية',
       type: 'image',
       options: { hotspot: true },
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'gallery',
-      title: 'Gallery Images',
+      title: 'معرض الصور',
       type: 'array',
       of: [{ type: 'image', options: { hotspot: true } }],
     }),
     defineField({
       name: 'category',
-      title: 'Category',
+      title: 'الفئة',
       type: 'reference',
       to: [{ type: 'category' }],
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'الوصف',
       type: 'text',
     }),
     defineField({
       name: 'stock',
-      title: 'Stock Quantity (كمية المخزون)',
-      description: 'Enter quantities per size (ادخل الكمية لكل مقاس)',
+      title: 'كمية المخزون',
+      description: 'ادخل الكمية لكل مقاس',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
-            { name: 'size', type: 'string', title: 'Size (المقاس)', description: 'e.g., S, M, L, XL, etc.' },
-            { name: 'quantity', type: 'number', title: 'Quantity (الكمية)', validation: Rule => Rule.min(0) }
+            { name: 'size', type: 'string', title: 'المقاس', description: 'مثل S, M, L, XL, الخ' },
+            { name: 'quantity', type: 'number', title: 'الكمية', validation: Rule => Rule.min(0) }
           ],
           preview: {
             select: {
@@ -76,8 +76,8 @@ export default defineType({
             },
             prepare({ size, quantity }) {
               return {
-                title: `${size || 'No Size'}`,
-                subtitle: `Qty: ${quantity || 0}`
+                title: `${size || 'بدون مقاس'}`,
+                subtitle: `الكمية: ${quantity || 0}`
               };
             }
           }
@@ -86,19 +86,19 @@ export default defineType({
     }),
     defineField({
       name: 'sizes',
-      title: 'Sizes',
+      title: 'المقاسات المتاحة',
       type: 'array',
       of: [{ type: 'string' }],
       options: {
         layout: 'tags',
       },
-      description: 'Available sizes for the product (e.g., S, M, L, XL)',
+      description: 'المقاسات المتاحة للمنتج (مثل S, M, L, XL)',
     }),
     defineField({
       name: 'fabric',
-      title: 'Fabric (القماش)',
+      title: 'القماش',
       type: 'string',
-      description: 'The material/fabric of the product',
+      description: 'المادة / القماش المستخدم',
     }),
 
   ],

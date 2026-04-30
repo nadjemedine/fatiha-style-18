@@ -200,58 +200,94 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
               <div>
                 <h3 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-3">المقاس</h3>
                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-                  {product.sizes.map((size: string) => (
-                    <button 
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-md border-2 font-bold text-xs transition-all ${
-                        selectedSize === size ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda] shadow-lg' : 'border-[#d6c9e8] text-gray-500 hover:border-[#c9beda]'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                  {product.sizes.map((size: string) => {
+                    const stockItem = product.stock?.find((s: any) => s.size === size);
+                    const isAvailable = !product.stock || (stockItem && stockItem.quantity > 0);
+                    
+                    return (
+                      <button 
+                        key={size}
+                        onClick={() => isAvailable && setSelectedSize(size)}
+                        disabled={!isAvailable}
+                        className={`w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-md border-2 font-bold text-xs transition-all relative overflow-hidden ${
+                          selectedSize === size 
+                            ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda] shadow-lg' 
+                            : isAvailable 
+                              ? 'border-[#d6c9e8] text-gray-500 hover:border-[#c9beda]'
+                              : 'border-gray-100 text-gray-300 cursor-not-allowed opacity-60'
+                        }`}
+                      >
+                        {size}
+                        {!isAvailable && (
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="w-[120%] h-[2px] bg-gray-300 rotate-45" />
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
-            <div className="flex gap-4 items-stretch mt-4">
-              {/* Actions */}
-              <div className="flex-1 flex flex-col gap-4">
-                <button 
-                  onClick={handleBuyNow}
-                  className="w-full py-3 bg-[#c9beda] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:shadow-xl transition-all transform active:scale-[0.98] text-sm shadow-[0_10px_20px_-10px_rgba(201,190,218,0.5)]"
-                >
-                  <CreditCard className="w-4 h-4" />
-                  اطلب الآن
-                </button>
-                <button 
-                  onClick={handleAddToCart}
-                  className="w-full py-3 bg-white border-2 border-[#c9beda] text-[#c9beda] rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#FEE4ED] transition-all"
-                >
-                  <ShoppingBag className="w-4 h-4" />
-                  أضف إلى السلة
-                </button>
-              </div>
+            {(() => {
+              const isAllOutOfStock = product.sizes && product.sizes.length > 0 && 
+                product.sizes.every((size: string) => {
+                  const stockItem = product.stock?.find((s: any) => s.size === size);
+                  return product.stock && (!stockItem || stockItem.quantity <= 0);
+                });
 
-              {/* Vertical Quantity Selector */}
-              <div className="flex flex-col items-center justify-between bg-gray-50 rounded-xl border border-[#d6c9e8] p-2 w-20 shrink-0">
-                <button 
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-10 h-10 flex items-center justify-center bg-white rounded-full text-[#c9beda] hover:bg-[#FEE4ED] shadow-sm transition-all active:scale-90"
-                >
-                  <Plus className="w-4 h-4" strokeWidth={3} />
-                </button>
-                <span className="text-base font-black text-gray-800">{quantity}</span>
-                <button 
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 h-10 flex items-center justify-center bg-white rounded-full text-[#c9beda] hover:bg-[#FEE4ED] shadow-sm transition-all active:scale-90 disabled:opacity-30 disabled:pointer-events-none"
-                  disabled={quantity <= 1}
-                >
-                  <Minus className="w-4 h-4" strokeWidth={3} />
-                </button>
-              </div>
-            </div>
+              return (
+                <div className="flex gap-4 items-stretch mt-4">
+                  {/* Actions */}
+                  <div className="flex-1 flex flex-col gap-4">
+                    <button 
+                      onClick={handleBuyNow}
+                      disabled={isAllOutOfStock}
+                      className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-3 transition-all transform active:scale-[0.98] text-sm shadow-[0_10px_20px_-10px_rgba(201,190,218,0.5)] ${
+                        isAllOutOfStock 
+                          ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none' 
+                          : 'bg-[#c9beda] text-white hover:shadow-xl'
+                      }`}
+                    >
+                      <CreditCard className="w-4 h-4" />
+                      {isAllOutOfStock ? 'المنتج غير متوفر' : 'اطلب الآن'}
+                    </button>
+                    <button 
+                      onClick={handleAddToCart}
+                      disabled={isAllOutOfStock}
+                      className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-3 transition-all ${
+                        isAllOutOfStock 
+                          ? 'bg-gray-100 border-2 border-gray-200 text-gray-400 cursor-not-allowed' 
+                          : 'bg-white border-2 border-[#c9beda] text-[#c9beda] hover:bg-[#FEE4ED]'
+                      }`}
+                    >
+                      <ShoppingBag className="w-4 h-4" />
+                      {isAllOutOfStock ? 'نفذ المنتج' : 'أضف إلى السلة'}
+                    </button>
+                  </div>
+
+                  {/* Vertical Quantity Selector */}
+                  <div className="flex flex-col items-center justify-between bg-gray-50 rounded-xl border border-[#d6c9e8] p-2 w-20 shrink-0">
+                    <button 
+                      onClick={() => setQuantity(quantity + 1)}
+                      disabled={isAllOutOfStock}
+                      className="w-10 h-10 flex items-center justify-center bg-white rounded-full text-[#c9beda] hover:bg-[#FEE4ED] shadow-sm transition-all active:scale-90 disabled:opacity-30 disabled:pointer-events-none"
+                    >
+                      <Plus className="w-4 h-4" strokeWidth={3} />
+                    </button>
+                    <span className="text-base font-black text-gray-800">{quantity}</span>
+                    <button 
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-10 h-10 flex items-center justify-center bg-white rounded-full text-[#c9beda] hover:bg-[#FEE4ED] shadow-sm transition-all active:scale-90 disabled:opacity-30 disabled:pointer-events-none"
+                      disabled={quantity <= 1 || isAllOutOfStock}
+                    >
+                      <Minus className="w-4 h-4" strokeWidth={3} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </div>
 

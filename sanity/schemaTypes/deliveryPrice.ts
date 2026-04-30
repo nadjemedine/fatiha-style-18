@@ -2,56 +2,56 @@ import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'deliveryPrice',
-  title: 'Delivery Prices',
+  title: 'أسعار التوصيل',
   type: 'document',
   fields: [
     defineField({
       name: 'wilayaId',
-      title: 'Wilaya ID',
+      title: 'رقم الولاية',
       type: 'string',
       validation: (Rule) => Rule.required().min(1).max(58),
     }),
     defineField({
       name: 'wilayaName',
-      title: 'Wilaya Name',
+      title: 'اسم الولاية',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'homePrice',
-      title: 'Home Delivery Price (DA)',
+      title: 'سعر توصيل للمنزل (د.ج)',
       type: 'number',
       validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
       name: 'officePrice',
-      title: 'Office/Pickup Point Price (DA)',
+      title: 'سعر توصيل للمكتب / نقطة استلام (د.ج)',
       type: 'number',
       validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
       name: 'carrier',
-      title: 'Delivery Carrier',
+      title: 'شركة التوصيل',
       type: 'string',
       options: {
         list: [
-          { title: 'Yalidine', value: 'yalidine' },
-          { title: 'Other', value: 'other' },
+          { title: 'ياليدين', value: 'yalidine' },
+          { title: 'أخرى', value: 'other' },
         ],
       },
       initialValue: 'yalidine',
     }),
     defineField({
       name: 'isActive',
-      title: 'Is Active',
+      title: 'مفعل',
       type: 'boolean',
       initialValue: true,
     }),
     defineField({
       name: 'notes',
-      title: 'Notes',
+      title: 'ملاحظات',
       type: 'text',
-      description: 'Additional notes about pricing',
+      description: 'ملاحظات إضافية حول التسعير',
     }),
   ],
   preview: {

@@ -2,18 +2,18 @@ import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'category',
-  title: 'Category',
+  title: 'الفئة',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'العنوان',
       type: 'string',
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'الرابط',
       type: 'slug',
       options: {
         source: 'title',
@@ -23,12 +23,12 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'الوصف',
       type: 'text',
     }),
     defineField({
       name: 'image',
-      title: 'Cover Image',
+      title: 'صورة الغلاف',
       type: 'image',
       options: { hotspot: true },
     }),

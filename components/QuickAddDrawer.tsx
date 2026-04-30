@@ -122,47 +122,80 @@ const QuickAddDrawer = () => {
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest text-right w-full">المقاس: {selectedSize}</h4>
                 </div>
                 <div className="flex overflow-x-auto pb-4 gap-3 no-scrollbar snap-x snap-proximity">
-                  {product.sizes.map((size: string) => (
-                    <button 
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl border-2 font-bold text-sm transition-all snap-start ${
-                        selectedSize === size ? 'border-accent bg-nav-bg text-accent shadow-md' : 'border-gray-100 text-gray-500'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                  {product.sizes.map((size: string) => {
+                    const stockItem = product.stock?.find((s: any) => s.size === size);
+                    const isAvailable = !product.stock || (stockItem && stockItem.quantity > 0);
+                    
+                    return (
+                      <button 
+                        key={size}
+                        onClick={() => isAvailable && setSelectedSize(size)}
+                        disabled={!isAvailable}
+                        className={`w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-xl border-2 font-bold text-sm transition-all snap-start relative overflow-hidden ${
+                          selectedSize === size 
+                            ? 'border-accent bg-nav-bg text-accent shadow-md' 
+                            : isAvailable
+                              ? 'border-gray-100 text-gray-500 hover:border-accent/30'
+                              : 'border-gray-50 text-gray-300 cursor-not-allowed opacity-60'
+                        }`}
+                      >
+                        {size}
+                        {!isAvailable && (
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="w-[120%] h-[2px] bg-gray-300 rotate-45" />
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-4 bg-gray-50 px-4 py-3 rounded-2xl border border-accent/10 shrink-0">
-                <button 
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-1 hover:bg-accent/10 rounded-lg transition-colors text-accent disabled:opacity-30"
-                  disabled={quantity <= 1}
-                >
-                  <Minus className="w-5 h-5" strokeWidth={3} />
-                </button>
-                <span className="text-lg font-bold text-gray-700 min-w-[1.5rem] text-center">{quantity}</span>
-                <button 
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-1 hover:bg-accent/10 rounded-lg transition-colors text-accent"
-                >
-                  <Plus className="w-5 h-5" strokeWidth={3} />
-                </button>
-              </div>
-              
-              <button 
-                onClick={handleAddToCart}
-                className="flex-1 py-5 bg-accent text-white rounded-3xl font-bold flex items-center justify-center gap-3 hover:shadow-xl transition-all transform active:scale-95 text-lg"
-              >
-                <ShoppingBag className="w-6 h-6" />
-                Ajouter
-              </button>
-            </div>
+            {(() => {
+              const selectedStockItem = product.stock?.find((s: any) => s.size === selectedSize);
+              const isSelectedSizeAvailable = !product.stock || (selectedStockItem && selectedStockItem.quantity > 0);
+              const isAllOutOfStock = product.sizes && product.sizes.length > 0 && 
+                product.sizes.every((size: string) => {
+                  const stockItem = product.stock?.find((s: any) => s.size === size);
+                  return product.stock && (!stockItem || stockItem.quantity <= 0);
+                });
+
+              return (
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 bg-gray-50 px-4 py-3 rounded-2xl border border-accent/10 shrink-0">
+                    <button 
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="p-1 hover:bg-accent/10 rounded-lg transition-colors text-accent disabled:opacity-30"
+                      disabled={quantity <= 1 || isAllOutOfStock}
+                    >
+                      <Minus className="w-5 h-5" strokeWidth={3} />
+                    </button>
+                    <span className="text-lg font-bold text-gray-700 min-w-[1.5rem] text-center">{quantity}</span>
+                    <button 
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="p-1 hover:bg-accent/10 rounded-lg transition-colors text-accent disabled:opacity-30"
+                      disabled={isAllOutOfStock}
+                    >
+                      <Plus className="w-5 h-5" strokeWidth={3} />
+                    </button>
+                  </div>
+                  
+                  <button 
+                    onClick={handleAddToCart}
+                    disabled={!isSelectedSizeAvailable || isAllOutOfStock}
+                    className={`flex-1 py-5 rounded-3xl font-bold flex items-center justify-center gap-3 transition-all transform active:scale-95 text-lg ${
+                      !isSelectedSizeAvailable || isAllOutOfStock
+                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                        : 'bg-accent text-white hover:shadow-xl'
+                    }`}
+                  >
+                    <ShoppingBag className="w-6 h-6" />
+                    {isAllOutOfStock ? 'نفذ المنتج' : !isSelectedSizeAvailable ? 'غير متوفر' : 'Ajouter'}
+                  </button>
+                </div>
+              );
+            })()}
           </div>
         ) : null}
       </div>
