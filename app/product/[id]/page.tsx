@@ -198,13 +198,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
             {/* Sizes */}
             {product.sizes && product.sizes.length > 0 && (
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Taille</h3>
-                  <button className="flex items-center gap-1.5 text-xs font-bold text-gray-400 hover:text-[#c9beda] transition-colors">
-                    <Ruler className="w-3 h-3" />
-                    Guide des tailles
-                  </button>
-                </div>
+                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-4">Taille</h3>
                 <div className="flex gap-3 flex-wrap">
                   {product.sizes.map((size: string) => (
                     <button 
@@ -260,6 +254,61 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
           </div>
         </div>
+
+        {/* Related Products */}
+        <RelatedProducts categoryId={product.category?._ref} currentProductId={product._id} />
+      </div>
+    </div>
+  );
+};
+
+const RelatedProducts = ({ categoryId, currentProductId }: { categoryId?: string; currentProductId: string }) => {
+  const [relatedProducts, setRelatedProducts] = React.useState<any[]>([]);
+  
+  React.useEffect(() => {
+    if (!categoryId) return;
+    
+    const fetchRelated = async () => {
+      try {
+        const data = await client.fetch(
+          `*[_type == "product" && category._ref == $categoryId && _id != $currentProductId] | order(_createdAt desc) [0...4]`,
+          { categoryId, currentProductId }
+        );
+        setRelatedProducts(data);
+      } catch (error) {
+        console.error('Error fetching related products:', error);
+      }
+    };
+    fetchRelated();
+  }, [categoryId, currentProductId]);
+
+  if (relatedProducts.length === 0) return null;
+
+  return (
+    <div className="mt-20">
+      <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 text-center">
+        Produits similaires
+      </h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {relatedProducts.map((product) => (
+          <Link key={product._id} href={`/product/${product._id}`}>
+            <div className="group block bg-white rounded-xl border border-[#d6c9e8]/20 overflow-hidden shadow-sm hover:shadow-lg transition-all">
+              <div className="aspect-[3/4] bg-gray-50">
+                <img 
+                  src={urlFor(product.image).url()} 
+                  alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-sm font-bold text-gray-800 font-ornate italic line-clamp-1 mb-1">
+                  {product.name}
+                </h3>
+                <p className="text-base font-bold text-[#c9beda]">{product.price} DA</p>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
