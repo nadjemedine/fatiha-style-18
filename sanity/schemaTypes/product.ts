@@ -95,6 +95,27 @@ export default defineType({
       description: 'المقاسات المتاحة للمنتج (مثل S, M, L, XL)',
     }),
     defineField({
+      name: 'colors',
+      title: 'الألوان المتاحة',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', type: 'string', title: 'اسم اللون' },
+            { name: 'image', type: 'image', title: 'صورة اللون (اختياري)', options: { hotspot: true } }
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              media: 'image'
+            }
+          }
+        }
+      ],
+      description: 'الألوان المتاحة للمنتج مع صور اختيارية لكل لون',
+    }),
+    defineField({
       name: 'fabric',
       title: 'القماش',
       type: 'string',
