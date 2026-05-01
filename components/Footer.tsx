@@ -28,15 +28,15 @@ const Footer = () => {
           <div className="h-16">
             <img 
               src={settings?.logo ? urlFor(settings.logo).url() : "/logo.png"} 
-              alt={settings?.storeName || "Fatiha Style 18 Logo"} 
+              alt={settings?.storeName || "Fatiha Style Logo"} 
               className="h-full w-auto object-contain"
             />
           </div>
           <p className="font-ornate italic text-accent text-lg font-medium tracking-wide">
-            {settings?.storeName || "Fatiha Style 18"}
+            {settings?.storeName || "Fatiha Style"}
           </p>
           <p className="max-w-md text-gray-500 text-sm leading-relaxed mx-auto font-medium">
-            {settings?.footerText || "Fatiha Style 18 هي وجهتك المفضلة للأزياء العصرية والأنيقة"}
+            {settings?.footerText || "Fatiha Style هي وجهتك المفضلة للأزياء العصرية والأنيقة"}
           </p>
         </div>
 

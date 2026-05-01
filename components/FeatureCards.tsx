@@ -26,20 +26,20 @@ const FeatureCards = () => {
   return (
     <section className="bg-background py-8 border-y border-accent/10 relative overflow-hidden">
       <div className="flex animate-ticker animate-ticker-hover-pause w-fit">
-        {[...features, ...features].map((feature, index) => (
+        {features.map((feature, index) => (
           <div 
             key={`${feature._id}-${index}`} 
             className="flex-shrink-0 w-[240px] px-4"
           >
-            <div className="bg-white p-6 rounded-2xl border border-accent/20 shadow-sm flex items-center gap-5 hover:shadow-md transition-shadow group">
-              <div className="bg-nav-bg p-3 rounded-full shrink-0 group-hover:scale-110 transition-transform">
+            <div className="bg-white p-6 rounded-2xl border border-accent/20 shadow-sm flex flex-col items-center text-center gap-4 hover:shadow-md transition-shadow group">
+              <div className="bg-nav-bg p-4 rounded-full shrink-0 group-hover:scale-110 transition-transform">
                 {renderIcon(feature.iconName)}
               </div>
-              <div className="text-left">
-                <h3 className="text-sm font-bold text-gray-800 font-ornate italic tracking-wide mb-0.5">
+              <div>
+                <h3 className="text-sm font-bold text-gray-800 font-ornate italic tracking-wide mb-1.5">
                   {feature.title}
                 </h3>
-                <p className="text-[10px] text-gray-500 font-medium leading-tight">
+                <p className="text-[10px] text-gray-500 font-medium leading-relaxed">
                   {feature.description}
                 </p>
               </div>

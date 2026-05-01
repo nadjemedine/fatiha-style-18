@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Heart, ChevronLeft } from 'lucide-react';
+import { Heart, ChevronRight } from 'lucide-react';
 import { useCart } from '@/components/CartContext';
 import Link from 'next/link';
 import { client } from '@/sanity/lib/client';
@@ -41,9 +41,9 @@ export default function FavoritesPage() {
       {/* Header */}
       <div className="bg-[#FEE4ED] p-4 flex items-center gap-4 border-b border-[#d6c9e8] sticky top-0 z-10">
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
-          <ChevronLeft className="w-6 h-6 text-gray-700" />
+          <ChevronRight className="w-6 h-6 text-gray-700" />
         </Link>
-        <h1 className="text-xl font-bold text-gray-900">Mes Favoris ({favorites.length})</h1>
+        <h1 className="text-xl font-bold text-gray-900 font-ornate italic">مفضلتي ({favorites.length})</h1>
       </div>
 
       <div className="max-w-7xl mx-auto p-4">
@@ -56,8 +56,8 @@ export default function FavoritesPage() {
             <div className="bg-[#FEE4ED] p-8 rounded-full mb-6">
               <Heart className="w-16 h-16 text-accent" />
             </div>
-            <h2 className="text-xl font-bold text-gray-800 mb-2">Aucun favori pour le moment</h2>
-            <p className="text-gray-500 mb-8">Explorez la boutique et ajoutez vos produits préférés</p>
+            <h2 className="text-xl font-bold text-gray-800 mb-2 font-ornate italic">مفضلتي فارغة حالياً</h2>
+            <p className="text-gray-500 mb-8">استكشف المتجر وأضف منتجاتك المفضلة</p>
             <Link 
               href="/" 
               className="inline-block px-6 py-2.5 bg-gradient-to-r from-accent to-purple-400 text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all border-2 border-white/20 backdrop-blur-sm"

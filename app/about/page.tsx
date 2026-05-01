@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ChevronLeft, Info } from 'lucide-react';
+import { ChevronRight, Info } from 'lucide-react';
 import Link from 'next/link';
 import BottomNav from '@/components/BottomNav';
 import TopBar from '@/components/TopBar';
@@ -16,7 +16,7 @@ export default function AboutPage() {
       {/* Page Header */}
       <div className="bg-[#FEE4ED] p-4 flex items-center gap-4 border-b border-[#d6c9e8]">
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
-          <ChevronLeft className="w-6 h-6 text-gray-700" />
+          <ChevronRight className="w-6 h-6 text-gray-700" />
         </Link>
         <h1 className="text-xl font-bold text-gray-900 font-ornate">من نحن</h1>
       </div>
@@ -30,7 +30,7 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">تاريخنا</h2>
           </div>
           <p className="text-gray-600 leading-relaxed text-lg">
-            مرحبًا بكم في <span className="font-bold text-accent">Fatiha Style 18</span>، وجهتكم المفضلة للأزياء في الجزائر العاصمة.
+            مرحبًا بكم في <span className="font-bold text-accent">Fatiha Style</span>، وجهتكم الإلكترونية المفضلة للأزياء، مقرنا في جيجل ونحن فخورون بخدمتكم وتوفير التوصيل لكافة الولايات الجزائرية.
             منذ تأسيسنا، نسعى جاهدين لتقديم مجموعات تجمع بين الأناقة التقليدية والحداثة الجريئة.
           </p>
         </section>

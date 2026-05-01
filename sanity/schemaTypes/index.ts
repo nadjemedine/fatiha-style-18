@@ -8,6 +8,7 @@ import hero from './hero';
 import project from './project';
 import order from './order';
 import deliveryPrice from './deliveryPrice';
+import menu from './menu';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   product,
@@ -18,4 +19,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   project,
   order,
   deliveryPrice,
+  menu,
 ];

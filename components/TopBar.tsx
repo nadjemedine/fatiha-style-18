@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const TopBar = () => {
   const announcements = [
-    "Bienvenue à Fatiha Style 18 Boutique",
+    "Bienvenue à Fatiha Style Boutique",
     "Livraison Rapide 58 Wilayas",
     "Paiement à la livraison"
   ];

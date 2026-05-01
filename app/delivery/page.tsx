@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ChevronLeft, Truck, Clock, ShieldCheck, MapPin } from 'lucide-react';
+import { ChevronRight, Truck, Clock, ShieldCheck, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import BottomNav from '@/components/BottomNav';
 import TopBar from '@/components/TopBar';
@@ -16,7 +16,7 @@ export default function DeliveryPage() {
       {/* Page Header */}
       <div className="bg-[#FEE4ED] p-4 flex items-center gap-4 border-b border-[#d6c9e8]">
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
-          <ChevronLeft className="w-6 h-6 text-gray-700" />
+          <ChevronRight className="w-6 h-6 text-gray-700" />
         </Link>
         <h1 className="text-xl font-bold text-gray-900 font-ornate">سياسة التوصيل</h1>
       </div>
@@ -30,7 +30,7 @@ export default function DeliveryPage() {
             <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">مناطق التوصيل</h2>
           </div>
           <p className="text-gray-600 leading-relaxed text-lg">
-            نقوم بالتوصيل في جميع <span className="font-bold text-accent">الولايات الجزائرية  58 </span>. سواء كنت في الجزائر العاصمة، وهران، قسنطينة أو في الجنوب، فإننا نبذل قصارى جهدنا لوصول طلباتك إليك بسرعة.
+            نقوم بالتوصيل في جميع <span className="font-bold text-accent">الولايات الجزائرية  58 </span>. سواء كنت في جيجل، الجزائر العاصمة، وهران، قسنطينة أو في الجنوب، فإننا نبذل قصارى جهدنا لوصول طلباتك إليك بسرعة.
           </p>
         </section>
 
@@ -41,7 +41,7 @@ export default function DeliveryPage() {
               <h3 className="font-bold font-ornate italic text-xl">المدة الزمنية</h3>
             </div>
             <ul className="space-y-2 text-gray-600">
-              <li>الجزائر العاصمة: 24 ساعة</li>
+              <li>جيجل: 24 ساعة</li>
               <li>• المدن الكبرى: من يوم إلى يومين</li>
               <li>• الولايات الأخرى: من يومين إلى 3 أيام</li>
             </ul>

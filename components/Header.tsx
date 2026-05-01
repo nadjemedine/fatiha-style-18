@@ -48,7 +48,7 @@ const Header = () => {
           <Link href="/" className="h-[50px] flex items-center">
             <img 
               src={settings?.logo ? urlFor(settings.logo).url() : "/logo.png"} 
-              alt={settings?.storeName || "Fatiha Style 18"} 
+              alt={settings?.storeName || "Fatiha Style"} 
               className="h-full w-auto object-contain"
             />
           </Link>
@@ -144,7 +144,7 @@ const Header = () => {
           <Link href="/" className="h-[70px] flex items-center">
             <img 
               src={settings?.logo ? urlFor(settings.logo).url() : "/logo.png"} 
-              alt={settings?.storeName || "Fatiha Style 18"} 
+              alt={settings?.storeName || "Fatiha Style"} 
               className="h-full w-auto object-contain"
             />
           </Link>

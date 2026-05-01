@@ -80,8 +80,8 @@ const QuickAddDrawer = () => {
         ) : product ? (
           <div className="space-y-8">
             <div className="flex items-center gap-6">
-              <div className="w-24 h-32 rounded-2xl overflow-hidden shadow-md">
-                <img src={urlFor(product.image).url()} alt={product.name} className="w-full h-full object-cover" />
+              <div className="w-24 h-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-md bg-gray-50 flex items-center justify-center">
+                <img src={urlFor(product.image).url()} alt={product.name} className="w-full h-full object-contain" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900 font-ornate italic">{product.name}</h3>

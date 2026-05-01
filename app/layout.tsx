@@ -22,21 +22,21 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fatihastyle18.store"),
   title: {
-    default: "فاتيحا ستايل 18",
-    template: "%s | Boutique fatihastyle 18",
+    default: "Fatiha Style | Boutique de moderne couture",
+    template: "%s | Fatiha Style",
   },
-  description: "متجر أزياء راقية وأنيقة في الجزائر. اكتشف مجموعاتنا الحصرية من الملابس التقليدية والعصرية.",
+  description: "فاتيحا ستايل | عنوانك للأناقة والتميز. اكتشفي تشكيلتنا الراقية من أحدث موديلات الخياطة العصرية والتصاميم الفريدة التي تجمع بين الفخامة والجمال لتناسب إطلالتك الساحرة.",
   openGraph: {
-    title: "Boutique fatihastyle 18",
-    description: "متجر أزياء راقية وأنيقة في الجزائر. اكتشف مجموعاتنا الحصرية.",
+    title: "Fatiha Style | Boutique de moderne couture",
+    description: "فاتيحا ستايل | عنوانك للأناقة والتميز. اكتشفي تشكيلتنا الراقية من أحدث موديلات الخياطة العصرية.",
     url: "https://fatihastyle18.store",
-    siteName: "Boutique fatihastyle 18",
+    siteName: "Fatiha Style",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "شعار فاتيحا ستايل 18",
+        alt: "Logo Fatiha Style",
       },
     ],
     locale: "ar_DZ",
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Boutique fatihastyle 18",
-    description: "متجر أزياء راقية وأنيقة في الجزائر.",
+    title: "Fatiha Style | Boutique de moderne couture",
+    description: "فاتيحا ستايل | عنوانك للأناقة والتميز. اكتشفي تشكيلتنا الراقية.",
     images: ["/logo.png"],
   },
 };

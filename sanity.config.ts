@@ -4,7 +4,7 @@ import { schemaTypes } from './sanity/schemaTypes';
 
 export default defineConfig({
   name: 'default',
-  title: 'Fatiha Style 18',
+  title: 'Fatiha Style',
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',

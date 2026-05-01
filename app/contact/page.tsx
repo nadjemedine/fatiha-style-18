@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ChevronLeft, Phone, Mail, Globe, MessageCircle, MapPin } from 'lucide-react';
+import { ChevronRight, Phone, Mail, Globe, MessageCircle, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import BottomNav from '@/components/BottomNav';
 import TopBar from '@/components/TopBar';
@@ -31,7 +31,7 @@ export default function ContactPage() {
       {/* Page Header */}
       <div className="bg-[#FEE4ED] p-4 flex items-center gap-4 border-b border-[#d6c9e8]">
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
-          <ChevronLeft className="w-6 h-6 text-gray-700" />
+          <ChevronRight className="w-6 h-6 text-gray-700" />
         </Link>
         <h1 className="text-xl font-bold text-gray-900 font-ornate">اتصل بنا</h1>
       </div>
@@ -83,14 +83,14 @@ export default function ContactPage() {
             <div className="p-3 bg-[#fce6d2] rounded-full text-orange-600">
               <MapPin className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">متجرنا</h2>
+            <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">متجرنا الإلكتروني</h2>
           </div>
           <p className="text-gray-600 leading-relaxed">
-            زورونا في متجرنا بالجزائر العاصمة. سنكون سعداء باستقبالكم وعرض مجموعاتنا عليكم شخصيًا.
+              نحن متجر إلكتروني حصري مقرنا في جيجل، نخدمكم بكل فخر ونوصل طلباتكم إلى جميع ولايات الوطن (58 ولاية).
           </p>
           <div className="mt-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-            <p className="font-bold text-gray-700">العنوان:</p>
-            <p className="text-gray-500">Alger, Algérie</p>
+            <p className="font-bold text-gray-700">المقر الرئيسي:</p>
+            <p className="text-gray-500">Jijel, Algérie</p>
           </div>
         </section>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
-import React from 'react';
-import { Heart, ShoppingBag } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCart } from './CartContext';
 import Link from 'next/link';
 import { urlFor } from '@/sanity/lib/image';
@@ -12,13 +12,17 @@ interface ProductCardProps {
   price: number;
   originalPrice?: number;
   image: any;
+  gallery?: any[];
   stock?: any[];
   sizes?: string[];
+  slug: { current: string };
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPrice, image, stock, sizes }) => {
-  const { addToCart, toggleFavorite, isFavorite, setQuickAddProduct } = useCart();
+const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPrice, image, gallery, stock, sizes, slug }) => {
+  const { toggleFavorite, isFavorite, setQuickAddProduct } = useCart();
+  const [activeImage, setActiveImage] = useState(0);
   const favorited = isFavorite(_id);
+  const allImages = [image, ...(gallery || [])];
 
   const isAllOutOfStock = sizes && sizes.length > 0 && 
     sizes.every((size: string) => {
@@ -40,16 +44,45 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
     toggleFavorite(_id);
   };
 
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveImage((prev) => (prev + 1) % allImages.length);
+  };
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveImage((prev) => (prev - 1 + allImages.length) % allImages.length);
+  };
+
   return (
-    <Link href={`/product/${_id}`} className="group block">
+    <Link href={`/product/${slug.current}`} className="group block">
       <div className="bg-white rounded-xl border border-accent/20 overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 active:scale-95 relative">
-        <div className="aspect-[3/4] bg-gray-50 overflow-hidden relative">
+        <div className="aspect-[3/4] bg-gray-50 overflow-hidden relative group/card">
           <img 
-            src={urlFor(image).url()} 
+            src={urlFor(allImages[activeImage]).url()} 
             alt={name} 
-            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${isAllOutOfStock ? 'opacity-60 grayscale-[0.5]' : ''}`} 
+            className={`w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 ${isAllOutOfStock ? 'opacity-60 grayscale-[0.5]' : ''}`} 
           />
           <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
+          
+          {allImages.length > 1 && (
+            <>
+              <button 
+                onClick={handlePrevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 text-[#c9beda] transition-all opacity-100 lg:opacity-0 lg:group-hover/card:opacity-100 active:scale-90 z-20 hover:scale-125"
+              >
+                <ChevronLeft className="w-5 h-5" strokeWidth={3} />
+              </button>
+              <button 
+                onClick={handleNextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-[#c9beda] transition-all opacity-100 lg:opacity-0 lg:group-hover/card:opacity-100 active:scale-90 z-20 hover:scale-125"
+              >
+                <ChevronRight className="w-5 h-5" strokeWidth={3} />
+              </button>
+            </>
+          )}
           
           {isAllOutOfStock && (
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ChevronLeft, ShieldCheck, Scale, FileText } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Scale, FileText } from 'lucide-react';
 import Link from 'next/link';
 import BottomNav from '@/components/BottomNav';
 import TopBar from '@/components/TopBar';
@@ -16,7 +16,7 @@ export default function TermsPage() {
       {/* Page Header */}
       <div className="bg-[#FEE4ED] p-4 flex items-center gap-4 border-b border-[#d6c9e8]">
         <Link href="/" className="p-2 hover:bg-[#d6c9e8] rounded-full transition-colors">
-          <ChevronLeft className="w-6 h-6 text-gray-700" />
+          <ChevronRight className="w-6 h-6 text-gray-700" />
         </Link>
         <h1 className="text-xl font-bold text-gray-900 font-ornate">الشروط والأحكام</h1>
       </div>
@@ -30,7 +30,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-gray-800 font-ornate italic">استخدام الموقع</h2>
           </div>
           <p className="text-gray-600 leading-relaxed">
-            بالوصول إلى هذا الموقع، فإنك توافق على شروط الاستخدام الخاصة بنا. محتوى هذا الموقع هو ملك لـ Fatiha Style 18 و محمي بموجب قوانين الملكية الفكرية.
+            بالوصول إلى هذا الموقع، فإنك توافق على شروط الاستخدام الخاصة بنا. محتوى هذا الموقع هو ملك لـ Fatiha Style و محمي بموجب قوانين الملكية الفكرية.
           </p>
         </section>
 

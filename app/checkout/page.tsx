@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCart } from '@/components/CartContext';
-import { ArrowLeft, ShoppingBag, CheckCircle2, User, Phone, MapPin, Truck, Trash2, Plus, Minus } from 'lucide-react';
+import { ArrowRight, ShoppingBag, CheckCircle2, User, Phone, MapPin, Truck, Trash2, Plus, Minus } from 'lucide-react';
 import Link from 'next/link';
 import { wilayas, yalidinePrices } from '@/lib/algeria-data';
+import AutocompleteInput from '@/components/AutocompleteInput';
 
 export default function CheckoutPage() {
   const { cart, cartCount, clearCart, updateQuantity, removeFromCart } = useCart();
@@ -16,13 +17,18 @@ export default function CheckoutPage() {
     commune: '',
     deliveryType: 'home' // 'home' or 'office'
   });
-  const [availableالبلديةs, setAvailableCommunes] = useState<string[]>([]);
+  const [availableCommunes, setAvailableCommunes] = useState<string[]>([]);
+
+  // Build flat list of wilaya names for autocomplete
+  const wilayaNames = wilayas.map(w => `${w.id} - ${w.ar_name} - ${w.name}`);
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   // Calculate delivery price based on wilaya and delivery type
   const getDeliveryPrice = (type: 'home' | 'office') => {
-    const selectedWilaya = wilayas.find(w => w.name === formData.wilaya);
+    if (!formData.wilaya) return 0;
+    const wId = formData.wilaya.split(' - ')[0];
+    const selectedWilaya = wilayas.find(w => w.id === wId);
     if (!selectedWilaya) return 0;
     
     const prices = yalidinePrices[selectedWilaya.id];
@@ -37,10 +43,15 @@ export default function CheckoutPage() {
   const finalTotal = total + deliveryPrice;
 
   useEffect(() => {
-    const selectedWilaya = wilayas.find(w => w.name === formData.wilaya);
+    if (!formData.wilaya) {
+      setAvailableCommunes([]);
+      return;
+    }
+    const wId = formData.wilaya.split(' - ')[0];
+    const selectedWilaya = wilayas.find(w => w.id === wId);
     if (selectedWilaya) {
-      setAvailableCommunes(selectedWilaya.communes);
-      // Removed auto-setting commune when wilaya changes for text input
+      const communesList = selectedWilaya.communes.map((c: any) => `${c.ar_name} - ${c.name}`);
+      setAvailableCommunes(communesList);
     } else {
       setAvailableCommunes([]);
     }
@@ -111,7 +122,7 @@ export default function CheckoutPage() {
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-md p-4 flex items-center gap-4 border-b border-[#d6c9e8] sticky top-0 z-20">
         <Link href="/" className="p-2 hover:bg-[#FEE4ED] rounded-full transition-colors">
-          <ArrowLeft className="w-6 h-6 text-gray-700" />
+          <ArrowRight className="w-6 h-6 text-gray-700" />
         </Link>
         <h1 className="text-xl font-bold text-gray-900 font-ornate italic">إتمام الطلب</h1>
       </div>
@@ -218,8 +229,8 @@ export default function CheckoutPage() {
                     <input 
                       type="tel"
                       required
-                      placeholder="مثال: 05xx xx xx xx"
-                      className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
+                      placeholder="مثال : 05-06-07"
+                      className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium text-right"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     />
@@ -231,29 +242,33 @@ export default function CheckoutPage() {
                       <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
                         <MapPin className="w-3 h-3" /> الولاية (58)
                       </label>
-                      <select 
-                        required
-                        className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium appearance-none"
+                      <AutocompleteInput
                         value={formData.wilaya}
-                        onChange={(e) => setFormData({...formData, wilaya: e.target.value})}
-                      >
-                        <option value="">اختر الولاية</option>
-                        {wilayas.map(w => (
-                          <option key={w.id} value={w.name}>{w.id} - {w.name}</option>
-                        ))}
-                      </select>
+                        onChange={(val) => setFormData(prev => ({
+                          ...prev, 
+                          wilaya: val, 
+                          commune: prev.wilaya === val ? prev.commune : ''
+                        }))}
+                        options={wilayaNames}
+                        placeholder="ابحث عن الولاية..."
+                        required
+                        className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
+                        minChars={2}
+                      />
                     </div>
                     <div className="space-y-2">
                       <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
                         <MapPin className="w-3 h-3" /> البلدية
                       </label>
-                      <input 
-                        type="text"
-                        required
-                        placeholder="مثال: القبة"
-                        className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
+                      <AutocompleteInput
                         value={formData.commune}
-                        onChange={(e) => setFormData({...formData, commune: e.target.value})}
+                        onChange={(val) => setFormData({...formData, commune: val})}
+                        options={availableCommunes}
+                        placeholder={formData.wilaya ? "ابحث عن البلدية..." : "الرجاء اختيار الولاية أولاً"}
+                        required
+                        className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
+                        minChars={2}
+                        disabled={!formData.wilaya}
                       />
                     </div>
                   </div>
@@ -295,10 +310,10 @@ export default function CheckoutPage() {
 
               {/* Right: Order Summary */}
               <div className="space-y-6">
-                <div className="bg-white p-8 rounded-2xl border border-[#d6c9e8] shadow-sm flex flex-col h-full">
-                  <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 border-b border-gray-50 pb-4 text-right">ملخص الطلب</h2>
+                <div className="bg-white p-8 rounded-2xl border border-[#d6c9e8] shadow-sm">
+                  <h2 className="text-2xl font-bold text-gray-900 font-ornate italic mb-8 border-b border-gray-50 pb-4 text-center">ملخص الطلب</h2>
                   
-                  <div className="mt-auto space-y-6">
+                  <div className="space-y-6">
                     <div className="space-y-4">
                       <div className="flex justify-between text-gray-500 font-medium">
                         <span>المجموع الفرعي</span>

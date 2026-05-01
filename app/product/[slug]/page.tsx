@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, use, useEffect } from 'react';
-import { ShoppingBag, CreditCard, ChevronLeft, Star, Ruler, Plus, Minus } from 'lucide-react';
+import { ShoppingBag, CreditCard, ChevronLeft, ChevronRight, Star, Ruler, Plus, Minus } from 'lucide-react';
 import { useCart } from '@/components/CartContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 
-const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
+const ProductPage = ({ params }: { params: Promise<{ slug: string }> }) => {
   const resolvedParams = use(params);
   const router = useRouter();
   const { addToCart } = useCart();
@@ -23,7 +23,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const data = await client.fetch(`*[_type == "product" && _id == $id][0]`, { id: resolvedParams.id });
+        const data = await client.fetch(`*[_type == "product" && slug.current == $slug][0]`, { slug: resolvedParams.slug });
         setProduct(data);
         if (data?.sizes?.[0]) setSelectedSize(data.sizes[0]);
         if (data?.colors?.[0]) {
@@ -40,7 +40,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
       }
     };
     fetchProduct();
-  }, [resolvedParams.id]);
+  }, [resolvedParams.slug]);
 
   if (loading) {
     return (
@@ -81,6 +81,20 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
     router.push('/checkout');
   };
 
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveImage((prev) => (prev + 1) % allImages.length);
+    setVariantImage(null);
+  };
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveImage((prev) => (prev - 1 + allImages.length) % allImages.length);
+    setVariantImage(null);
+  };
+
   return (
     <div className="min-h-screen bg-background pb-32">
       {/* Header spacing */}
@@ -88,19 +102,36 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8">
         <Link href="/" className="inline-flex items-center gap-2 text-[#c9beda] font-bold text-sm mb-6 hover:underline px-4 py-2 bg-white/60 backdrop-blur-sm rounded-lg border border-[#d6c9e8]/30 shadow-sm hover:shadow-md transition-all">
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronRight className="w-4 h-4" />
           العودة إلى المتجر
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Image Gallery */}
           <div className="space-y-4">
-            <div className="aspect-[3/4] rounded-xl overflow-hidden bg-white border border-[#d6c9e8] shadow-sm">
+            <div className="rounded-xl overflow-hidden bg-[#f3f0f7] border border-[#d6c9e8] shadow-sm flex items-center justify-center min-h-[400px] relative group/gallery">
               <img 
                 src={urlFor(variantImage || allImages[activeImage]).url()} 
                 alt={product.name}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                className="w-full h-auto max-h-[80vh] object-contain transition-transform duration-500 hover:scale-105"
               />
+              
+              {allImages.length > 1 && (
+                <>
+                  <button 
+                    onClick={handlePrevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-[#c9beda] transition-all opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100 active:scale-90 hover:scale-125"
+                  >
+                    <ChevronLeft className="w-8 h-8" strokeWidth={3} />
+                  </button>
+                  <button 
+                    onClick={handleNextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-[#c9beda] transition-all opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100 active:scale-90 hover:scale-125"
+                  >
+                    <ChevronRight className="w-8 h-8" strokeWidth={3} />
+                  </button>
+                </>
+              )}
             </div>
             <div className="flex gap-4 overflow-x-auto pb-2 no-scrollbar">
               {allImages.map((img: any, idx: number) => (
@@ -110,11 +141,11 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                     setActiveImage(idx);
                     setVariantImage(null);
                   }}
-                  className={`w-16 aspect-[3/4] rounded-md overflow-hidden border-2 transition-all shrink-0 ${
+                  className={`w-16 aspect-square rounded-md overflow-hidden border-2 transition-all shrink-0 ${
                     !variantImage && activeImage === idx ? 'border-[#c9beda] shadow-md' : 'border-[#d6c9e8] opacity-60'
                   }`}
                 >
-                  <img src={urlFor(img).url()} alt="" className="w-full h-full object-cover" />
+                  <img src={urlFor(img).url()} alt="" className="w-full h-full object-contain bg-[#f3f0f7]" />
                 </button>
               ))}
             </div>
@@ -327,7 +358,7 @@ const RelatedProducts = ({ categoryId, currentProductId }: { categoryId?: string
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {relatedProducts.map((product) => (
-          <Link key={product._id} href={`/product/${product._id}`}>
+          <Link key={product._id} href={`/product/${product.slug.current}`}>
             <div className="group block bg-white rounded-xl border border-[#d6c9e8]/20 overflow-hidden shadow-sm hover:shadow-lg transition-all">
               <div className="aspect-[3/4] bg-gray-50">
                 <img 
