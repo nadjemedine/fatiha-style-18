@@ -48,6 +48,10 @@ export const metadata: Metadata = {
     description: "فاتيحا ستايل | عنوانك للأناقة والتميز. اكتشفي تشكيلتنا الراقية.",
     images: ["/logo.png"],
   },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 import { CartProvider } from "@/components/CartContext";
