@@ -29,11 +29,11 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (value.length >= minChars) {
+    if (value.length >= minChars || (minChars === 0 && value === '')) {
       const query = value.toLowerCase();
       const matches = options.filter(opt =>
         opt.toLowerCase().includes(query)
-      ).slice(0, 15); // Limit to 15 suggestions for performance
+      );
       setFilteredOptions(matches);
     } else {
       setFilteredOptions([]);
@@ -68,7 +68,7 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = ({
           setIsOpen(true);
         }}
         onFocus={() => {
-          if (value.length >= minChars && filteredOptions.length > 0) {
+          if (filteredOptions.length > 0) {
             setIsOpen(true);
           }
         }}

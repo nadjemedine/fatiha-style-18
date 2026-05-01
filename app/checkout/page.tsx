@@ -253,7 +253,7 @@ export default function CheckoutPage() {
                         placeholder="ابحث عن الولاية..."
                         required
                         className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
-                        minChars={2}
+                        minChars={0}
                       />
                     </div>
                     <div className="space-y-2">
@@ -267,7 +267,7 @@ export default function CheckoutPage() {
                         placeholder={formData.wilaya ? "ابحث عن البلدية..." : "الرجاء اختيار الولاية أولاً"}
                         required
                         className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium"
-                        minChars={2}
+                        minChars={0}
                         disabled={!formData.wilaya}
                       />
                     </div>
