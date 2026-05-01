@@ -15,7 +15,8 @@ export default function CheckoutPage() {
     phone: '',
     wilaya: '',
     commune: '',
-    deliveryType: 'home' // 'home' or 'office'
+    deliveryType: '', // '' or 'home' or 'office'
+    detailedAddress: ''
   });
   const [availableCommunes, setAvailableCommunes] = useState<string[]>([]);
 
@@ -39,7 +40,7 @@ export default function CheckoutPage() {
 
   const homePrice = getDeliveryPrice('home');
   const officePrice = getDeliveryPrice('office');
-  const deliveryPrice = formData.deliveryType === 'home' ? homePrice : officePrice;
+  const deliveryPrice = formData.deliveryType === 'home' ? homePrice : (formData.deliveryType === 'office' ? officePrice : 0);
   const finalTotal = total + deliveryPrice;
 
   useEffect(() => {
@@ -59,8 +60,13 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.phone || !formData.wilaya) {
-      alert("يرجى ملء جميع الحقول المطلوبة");
+    if (!formData.fullName || !formData.phone || !formData.wilaya || !formData.deliveryType) {
+      alert("يرجى ملء جميع الحقول المطلوبة بما في ذلك نوع التوصيل");
+      return;
+    }
+
+    if (formData.deliveryType === 'home' && !formData.detailedAddress) {
+      alert("يرجى إدخال العنوان التفصيلي للتوصيل للمنزل");
       return;
     }
     
@@ -305,6 +311,23 @@ export default function CheckoutPage() {
                       </button>
                     </div>
                   </div>
+
+                  {/* Detailed Address - Conditional */}
+                  {formData.deliveryType === 'home' && (
+                    <div className="space-y-2 animate-in fade-in slide-in-from-top-4 duration-300">
+                      <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                        <MapPin className="w-3 h-3" /> العنوان التفصيلي
+                      </label>
+                      <textarea 
+                        required
+                        placeholder="مثال: رقم الدار، النهج، الحي، بجوار..."
+                        className="w-full p-4 bg-gray-50 border border-[#d6c9e8] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#c9beda] transition-all font-medium resize-none"
+                        rows={3}
+                        value={formData.detailedAddress}
+                        onChange={(e) => setFormData({...formData, detailedAddress: e.target.value})}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 

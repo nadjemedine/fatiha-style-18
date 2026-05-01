@@ -50,6 +50,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'detailedAddress',
+      title: 'العنوان التفصيلي',
+      type: 'text',
+      description: 'العنوان المفصل في حالة التوصيل للمنزل',
+    }),
+    defineField({
       name: 'items',
       title: 'عناصر الطلب',
       type: 'array',

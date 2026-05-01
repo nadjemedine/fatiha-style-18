@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
         wilaya: formData.wilaya,
         commune: formData.commune,
         deliveryType: formData.deliveryType,
+        detailedAddress: formData.detailedAddress || null,
         items: cart.map((item: any) => ({
           _type: 'orderItem',
           productName: item.name,
@@ -123,6 +124,12 @@ export async function POST(request: NextRequest) {
                     <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">نوع التوصيل:</td>
                     <td style="padding: 8px 0; color: #1f2937; font-weight: 700;">${formData.deliveryType === 'home' ? 'توصيل للمنزل' : 'نقطة استلام'}</td>
                   </tr>
+                  ${formData.deliveryType === 'home' && formData.detailedAddress ? `
+                  <tr>
+                    <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">العنوان التفصيلي:</td>
+                    <td style="padding: 8px 0; color: #1f2937; font-weight: 700;">${formData.detailedAddress}</td>
+                  </tr>
+                  ` : ''}
                 </table>
               </td>
             </tr>
