@@ -202,7 +202,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                 <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
                   {product.sizes.map((size: string) => {
                     const stockItem = product.stock?.find((s: any) => s.size === size);
-                    const isAvailable = !product.stock || (stockItem && stockItem.quantity > 0);
+                    const isAvailable = !!(stockItem && stockItem.quantity > 0);
                     
                     return (
                       <button 
@@ -214,7 +214,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
                             ? 'border-[#c9beda] bg-[#FEE4ED] text-[#c9beda] shadow-lg' 
                             : isAvailable 
                               ? 'border-[#d6c9e8] text-gray-500 hover:border-[#c9beda]'
-                              : 'border-gray-100 text-gray-300 cursor-not-allowed opacity-60'
+                              : 'border-gray-100 text-gray-300 cursor-not-allowed opacity-60 line-through decoration-gray-400 decoration-2'
                         }`}
                       >
                         {size}
@@ -234,7 +234,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
               const isAllOutOfStock = product.sizes && product.sizes.length > 0 && 
                 product.sizes.every((size: string) => {
                   const stockItem = product.stock?.find((s: any) => s.size === size);
-                  return product.stock && (!stockItem || stockItem.quantity <= 0);
+                  return !stockItem || stockItem.quantity <= 0;
                 });
 
               return (

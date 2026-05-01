@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ _id, name, price, originalPri
   const isAllOutOfStock = sizes && sizes.length > 0 && 
     sizes.every((size: string) => {
       const stockItem = stock?.find((s: any) => s.size === size);
-      return stock && (!stockItem || stockItem.quantity <= 0);
+      return !stockItem || stockItem.quantity <= 0;
     });
 
   const handleAddToCart = (e: React.MouseEvent) => {

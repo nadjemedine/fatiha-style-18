@@ -124,7 +124,7 @@ const QuickAddDrawer = () => {
                 <div className="flex overflow-x-auto pb-4 gap-3 no-scrollbar snap-x snap-proximity">
                   {product.sizes.map((size: string) => {
                     const stockItem = product.stock?.find((s: any) => s.size === size);
-                    const isAvailable = !product.stock || (stockItem && stockItem.quantity > 0);
+                    const isAvailable = !!(stockItem && stockItem.quantity > 0);
                     
                     return (
                       <button 
@@ -136,7 +136,7 @@ const QuickAddDrawer = () => {
                             ? 'border-accent bg-nav-bg text-accent shadow-md' 
                             : isAvailable
                               ? 'border-gray-100 text-gray-500 hover:border-accent/30'
-                              : 'border-gray-50 text-gray-300 cursor-not-allowed opacity-60'
+                              : 'border-gray-50 text-gray-300 cursor-not-allowed opacity-60 line-through decoration-gray-400 decoration-2'
                         }`}
                       >
                         {size}
@@ -158,7 +158,7 @@ const QuickAddDrawer = () => {
               const isAllOutOfStock = product.sizes && product.sizes.length > 0 && 
                 product.sizes.every((size: string) => {
                   const stockItem = product.stock?.find((s: any) => s.size === size);
-                  return product.stock && (!stockItem || stockItem.quantity <= 0);
+                  return !stockItem || stockItem.quantity <= 0;
                 });
 
               return (
