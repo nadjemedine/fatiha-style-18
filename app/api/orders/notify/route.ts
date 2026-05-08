@@ -55,6 +55,29 @@ export async function POST(request: NextRequest) {
       });
 
       console.log('Order saved to Sanity:', orderNumber);
+
+      // Decrease stock quantity for each item
+      try {
+        const stockTransaction = writeClient.transaction();
+        let hasStockUpdates = false;
+
+        for (const item of cart) {
+          if (item.id && item.size) {
+            stockTransaction.patch(item.id, (p) => 
+              p.dec({ [`stock[size == "${item.size}"].quantity`]: item.quantity })
+            );
+            hasStockUpdates = true;
+          }
+        }
+
+        if (hasStockUpdates) {
+          await stockTransaction.commit();
+          console.log('Stock updated successfully for order:', orderNumber);
+        }
+      } catch (stockError) {
+        // Log stock update error but don't fail the order process
+        console.error('Failed to update stock items:', stockError);
+      }
     }
 
     // Send email notification if API key is available
